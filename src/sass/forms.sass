@@ -1,0 +1,161 @@
+%input
+  transition: border-color 200ms
+  appearance: none
+  width: 100%
+  height: 42px
+  border: none
+  padding: 0
+  margin: 0
+  background-color: white
+  font-size: 1rem
+  padding: 0 0.5rem
+  border-radius: 2px
+  border: 3px solid rgba(black, $p4)
+  &:focus
+    outline: none
+    border-color: $primary-color
+
+.form-input
+  @extend %input
+
+.form-input--big
+  @extend %input
+  height: 52px
+  padding: 0 0.8rem
+
+.form-textarea
+  @extend %input
+  height: auto
+  min-height: 60px
+  resize: vertical
+  max-height: 100px
+  padding: 0.5rem
+
+.form-select
+  appearance: none
+  width: 100%
+  height: 42px
+  padding: 0 0.5rem
+  border-radius: 2px
+  border: none
+  border: 3px solid rgba(black, $p4)
+  background-color: rgba(black, $p5)
+  font-size: 1rem
+  cursor: pointer
+  background-image: url("/img/drop_down.svg")
+  background-repeat: no-repeat
+  background-position: 90% center
+  background-position: calc(100% - 0.5rem) center
+  &:focus
+    outline: none
+    border-color: $primary-color
+
+.form-row
+  margin-bottom: 1rem
+  &:last-of-type
+    margin-bottom: 0
+
+.input-w-btn
+  position: relative
+  input
+    padding-right: 3rem
+  i
+    line-height: 2
+
+label, input[type=checkbox]
+  cursor: pointer
+
+// Color selection
+
+.color-select-cont
+  +user-select(none)
+  display: inline-block
+  position: relative
+  .color-select
+    &:focus
+      outline: none
+  .colors-list
+    +position(absolute, 100% 0 null null)
+    +transition(visibility 0s 250ms, opacity 150ms, transform 250ms $swift-out)
+    +transform(scale(0, 0) translateY(-10px))
+    +transform-origin(right top)
+    +list-reset
+    width: 150px
+    margin-top: 1rem
+    background-color: #F9F9F9
+    padding: 0.5rem
+    padding-bottom: 0
+    visibility: hidden
+    opacity: 0
+    border-radius: 2px
+    z-index: 10
+    box-shadow: 0 2px 8px 2px rgba(black, 0.2)
+  .color-display
+    display: inline-block
+    .color
+      margin-top: -3px
+      width: 2.5rem
+      height: 24px
+  .color-cont
+    float: left
+    width: 30%
+    margin-right: 5%
+    margin-bottom: 0.5rem
+    line-height: 1
+    &:nth-child(3n)
+      margin-right: 0 !important
+  .color
+    width: 100%
+    height: 24px
+    display: inline-block
+    vertical-align: middle
+    border-radius: 3px
+    cursor: pointer
+  .color--empty
+    border: 3px solid #EEEEEE
+  &.dd-opened
+    .colors-list
+      +transform(scale(1, 1) translateY(0))
+      +transition-delay(0s)
+      visibility: visible
+      opacity: 1
+
+.image-input
+  .image-placeholder
+    position: relative
+    display: block
+    background-color: #F4F4F4
+    margin-top: 0.5rem
+    border-radius: 2px
+    i
+      +position(absolute, 0)
+      +size(3rem)
+      display: block
+      margin: auto
+      transition: color 200ms
+      font-size: 3rem
+      color: rgba(black, $p4)
+    &:hover i
+      color: rgba(black, $p3)
+  .image
+    width: 100%
+  &.clean
+    .image-placeholder
+      height: 150px
+
+.hidden-file-input
+  width: 0.1px
+  height: 0.1px
+  opacity: 0
+  overflow: hidden
+  position: absolute
+  z-index: -1
+
+
+
+
+
+
+
+
+

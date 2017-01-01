@@ -1,0 +1,70 @@
+$primary-color: #397CEB
+$back-color: #EBF4F5
+
+$modular-scale-ratio: $minor-third
+
+// Shades percentages
+$p1: 0.87 // 94%
+$p2: 0.8 // 85%
+$p3: 0.57 // 57%
+$p4: 0.15 // 37%
+$p5: 0.07 // 17%
+
+$topbar-height: 60px
+
+$swift-out: cubic-bezier(0.55, 0, 0.1, 1)
+
+*, *:after, *:before
+  box-sizing: inherit
+
+html, body
+  height: 100%
+
+html
+  font-family: 'Proxima Nova', sans-serif
+  font-size: 16px
+  box-sizing: border-box
+  color: rgba(black, $p2)
+
+body
+  margin: 0
+  background-color: $back-color
+
+h1, h2, h3, h4, h5, h6
+  margin: 0.2em 0 0.8em 0
+  color: rgba(black, $p1)
+  font-weight: bold
+
+img
+  max-width: 100%
+
+@for $i from 1 through 6
+  h#{$i}
+    font-size: modular-scale(6 - $i)
+
+.border-title
+  padding-left: 1rem
+  border-left: 5px solid $primary-color
+
+::selection
+  background: $primary-color // WebKit/Blink Browsers
+  color: white
+
+::-moz-selection
+  background: $primary-color // Gecko Browsers
+  color: white
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

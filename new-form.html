@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Thea</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body class="new-form">
+  <header class="topbar">
+    <div class="wrapper flexbox fullh">
+      <div class="topbar-logo">
+        <img src="/img/logo-thea.png" alt="Théa">
+      </div>
+      <nav class="topbar-navigation">
+        <a href="/" class="active">
+          <i class="material-icons">&#xE85D;</i>
+          <span>Formularios</span>
+        </a>
+        <a href="/">
+          <i class="material-icons">&#xE7FB;</i>
+          <span>Usuarios</span>
+        </a>
+      </nav>
+      <div class="user-options">
+        <div class="user-dropdown-container">
+          <span class="user-dropdown-btn" data-dropdown-toggle>
+            <i class="material-icons user-avatar">person</i>
+            <span>Dr. Strange</span>
+            <i class="material-icons">&#xE5C5;</i>
+          </span>
+          <div class="user-dropdown card">
+            <a href="javascript:void(0)" class="flexbox">
+              <i class="material-icons">&#xE7FD;</i>
+              <span>Perfil</span>
+            </a>
+            <a href="javascript:void(0)" class="flexbox">
+              <i class="material-icons">&#xE8AC;</i>
+              <span>Cerrar Sesión</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="list-view-layout-main-wrapper wrapper">
+    <div class="list-view-layout">
+      <div class="head-flex">
+        <a href="/forms.html" class="btn--icon">
+          <i class="material-icons">&#xE5C4;</i>
+        </a>
+        <h2 class="border-title flex-1">Nuevo Formulario</h2>
+        <div>
+          <button class="btn--primary">Guardar Formulario</button>
+        </div>
+      </div>
+      <aside class="aside-list" data-sticker='{ "offset": 76, "bottom": 16 }'>
+        <div class="relative fullh">
+          <div class="scrollable card padbox-1">
+            <h4>Opciones</h4>
+            <form action="#" class="form">
+              <div class="form-row">
+                <input type="text" class="form-input" placeholder="Título del formulario">
+              </div>
+              <div class="form-row">
+                <label data-image-input class="image-input clean">
+                  Logo Medicamento
+                  <span class="image-placeholder">
+                    <img class="image">
+                    <i class="material-icons">&#xE3F4;</i>
+                  </span>
+                  <input type="file" name="img" class="hidden-file-input">
+                </label>
+              </div>
+              <div class="form-row">
+                <div class="flexbox">
+                  <div class="flex-1">
+                    <span>Color destacado</span>
+                  </div>
+                  <div>
+                    <div class="color-select-cont" data-dd>
+                      <div class="color-select" data-dd-opener tabindex="1">
+                        <span class="color-display" data-dd-display><span class="color color--empty"></span></span>
+                        <i class="ion-arrow-down-b"></i>
+                        <ul class="colors-list">
+                          <li class="color-cont" data-dd-option data-value="#FF7043">
+                            <span class="color" style="background-color: #FF7043"></span>
+                          </li>
+                          <li class="color-cont" data-dd-option data-value="#EF5350">
+                            <span class="color" style="background-color: #EF5350"></span>
+                          </li>
+                          <li class="color-cont" data-dd-option data-value="#9575CD">
+                            <span class="color" style="background-color: #9575CD"></span>
+                          </li>
+                          <li class="color-cont" data-dd-option data-value="#7CB342">
+                            <span class="color" style="background-color: #7CB342"></span>
+                          </li>
+                          <li class="color-cont" data-dd-option data-value="#26A69A">
+                            <span class="color" style="background-color: #26A69A"></span>
+                          </li>
+                          <li class="color-cont" data-dd-option data-value="#607D8B">
+                            <span class="color" style="background-color: #607D8B"></span>
+                          </li>
+                        </ul>
+                        <input type="hidden" data-dd-input>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <textarea class="form-textarea" placeholder="Residentes"></textarea>
+              </div>
+            </form>
+          </div>
+        </div>
+      </aside>
+      <main class="content-view">
+        <div class="content card">
+          <h3>Aquí iría el formulario tal cual se va a ver en el ipad, sólo que con unas barritas en cada pregunta para el drag and drop</h3>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="/vendor.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

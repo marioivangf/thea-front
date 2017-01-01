@@ -1,0 +1,134 @@
+.ypadbox-1
+  padding: 1rem 0
+
+.ypadbox-2
+  padding: 2rem 0
+
+.padbox-1
+  padding: 1rem
+
+.padbox-2
+  padding: 2rem
+
+.head-flex
+  display: flex
+  align-items: center
+  margin: 0.3rem 0 1.4rem 0
+  .border-title
+    margin: 0
+
+.relative
+  position: relative
+
+.centered-container
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 100%
+
+.centered-box
+  width: 100%
+  max-width: 400px
+
+.card
+  background-color: white
+  box-shadow: 0 1px 1px rgba(black, 0.15)
+  border-radius: 2px
+
+.card-list-item
+  @extend .card
+  @extend .padbox-1
+  margin-bottom: 1rem
+
+.flexbox
+  display: flex
+  align-items: center
+
+.fullh
+  height: 100%
+
+.scrollable
+  max-height: 100%
+  overflow-x: hidden
+  overflow-y: auto
+
+@for $i from 1 through 12
+  .flex-#{$i}
+    flex: $i
+
+.sright
+  margin-right: 1rem
+
+.sdown
+  margin-bottom: 1rem
+
+.txt-center
+  text-align: center
+
+.txt-smaller
+  font-size: 0.8em
+
+.vam
+  vertical-align: middle
+
+.wrapper
+  +margin(null auto)
+  width: 90%
+  max-width: 1000px
+
+%button-reset
+  appearance: none
+  border: none
+  background-color: transparent
+  padding: 0
+  margin: 0
+  &:focus
+    outline: none
+
+.logo-m
+  width: 200px
+
+.txt-link
+  color: $primary-color
+  text-decoration: none
+  font-weight: bold
+  &:focus
+    outline: none
+  &:focus, &:hover
+    text-decoration: underline
+
+.txt-light
+  color: rgba(black, $p3)
+
+.mini-row
+  margin-bottom: 0.3rem
+
+.clearfix
+  +clearfix
+
+// Percentages columns
+
+.float-col
+  float: left
+
+.col-25
+  width: 25%
+
+.col-50
+  width: 50%
+
+.col-75
+  width: 75%
+
+.col-30
+  width: 30%
+
+.col-70
+  width: 70%
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+%btn
+  appearance: none
+  transition: color200ms, background-color 200ms
+  border: none
+  margin: 0
+  padding: 0.6rem 1rem
+  text-align: center
+  border-radius: 3px
+  font-size: 0.8rem
+  cursor: pointer
+  display: inline-block
+  line-height: 1.2
+  text-decoration: none
+  &:focus
+    outline: none
+  &:hover, &:focus
+    background-color: shade($primary-color, 10%)
+
+.btn--secondary
+  @extend %btn
+  min-width: 100px
+  background-color: transparent
+  color: rgba(black, $p3)
+  &:hover, &:focus
+    color: rgba(black, $p2)
+    background-color: rgba(black, $p5)
+
+.btn--primary
+  @extend %btn
+  min-width: 100px
+  color: white
+  background-color: $primary-color
+  &:hover, &:focus
+    background-color: shade($primary-color, 10%)
+
+.btn--expand
+  @extend %btn
+  width: 100%
+  height: 52px
+  color: white
+  padding: 0
+  font-size: 1rem
+  background-color: $primary-color
+  &:focus
+    outline: none
+  &:hover, &:focus
+    background-color: shade($primary-color, 10%)
+
+.btn--icon
+  +size(42px)
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: color 200ms
+  margin: 0
+  border: none
+  background: transparent
+  color: rgba(black, $p3)
+  cursor: pointer
+  padding: 0
+  text-decoration: none
+  &:focus
+    outline: none
+  &:hover
+    color: rgba(black, $p2)
+
+.btn--icon-in-input
+  @extend .btn--icon
+  +position(absolute, 0 0 0 null)
+  padding: 0 1rem
+
+
+
