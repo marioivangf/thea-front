@@ -29,6 +29,8 @@ html
 body
   margin: 0
   background-color: $back-color
+  min-width: 980px
+  overflow-x: hidden
 
 h1, h2, h3, h4, h5, h6
   margin: 0.2em 0 0.8em 0
@@ -53,6 +55,25 @@ img
 ::-moz-selection
   background: $primary-color // Gecko Browsers
   color: white
+
+.not-responsive-overlay
+  +position(fixed, 0)
+  display: none
+  background-color: white
+  z-index: 100
+  .logo
+    text-align: center
+    margin-bottom: 2rem
+    img
+      width: 150px
+  .centered-inner
+    max-width: 350px
+    margin-bottom: 3rem
+  .notice
+    color: $primary-color
+
+.not-responsive-notice .not-responsive-overlay
+  display: block
 
 
 

@@ -1,5 +1,9 @@
 (function () {
 
+  // Not responsive validation
+  window.addEventListener('resize', not_responsive_check, true);
+  not_responsive_check();
+
   // Toggle password in inputs
   each_node_evt("[data-password-toggle]", "mousedown", function (event) {
     var input = event.currentTarget.parentNode.getElementsByTagName("INPUT")[0];
@@ -124,6 +128,11 @@
         }]
       }
     });
+  }
+
+  function not_responsive_check () {
+    var w = window.innerWidth;
+    document.body.classList.toggle("not-responsive-notice", w < 980);
   }
 
   function each_node_evt (selector, type, cb) {
