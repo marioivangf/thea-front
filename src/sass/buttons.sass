@@ -1,6 +1,6 @@
 %btn
   appearance: none
-  transition: color200ms, background-color 200ms
+  transition: color 200ms, background-color 200ms
   border: none
   margin: 0
   padding: 0.6rem 1rem
@@ -19,11 +19,12 @@
 .btn--secondary
   @extend %btn
   min-width: 100px
-  background-color: transparent
+  background-color: rgba(black, $p5)
   color: rgba(black, $p3)
+  font-weight: bold
   &:hover, &:focus
     color: rgba(black, $p2)
-    background-color: rgba(black, $p5)
+    background-color: rgba(black, $p4)
 
 .btn--primary
   @extend %btn
