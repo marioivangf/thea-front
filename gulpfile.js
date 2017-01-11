@@ -15,7 +15,7 @@ gulp.task('script-vendor', function (cb) {
         concat('vendor.js'),
         uglify(),
       maps.write('.'),
-      gulp.dest('./')
+      gulp.dest('./assets/scripts/')
     ],
     cb
   );
@@ -28,7 +28,7 @@ gulp.task('script', function (cb) {
         concat('app.js'),
         uglify(),
       maps.write('.'),
-      gulp.dest('./')
+      gulp.dest('./assets/scripts/')
     ],
     cb
   );
@@ -39,8 +39,8 @@ gulp.task('sass', function () {
   .pipe(maps.init())
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(prefix())
-  .pipe(maps.write())
-  .pipe(gulp.dest('./'));
+  .pipe(maps.write('.'))
+  .pipe(gulp.dest('./assets/styles/'));
 });
 
 gulp.task('watch', function () {

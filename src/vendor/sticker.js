@@ -1,8 +1,18 @@
+/*!
+ * Sticker.js
+ *
+ * Simple js lib to stick scrollable sidebars without missing main scroll on document
+ *
+ * Copyright 2017 Iván García
+ * Released under the MIT license
+ */
+
 (function () {
 
   var default_options = {
     offset: 0,
-    bottom: 0
+    bottom: 0,
+    perc_width: null
   };
 
   var animation_frame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
@@ -18,12 +28,14 @@
     this.down = false;
     this.get_variables();
     this.set_events();
+    this.reset_sticker();
     this.calc();
   };
 
   S.prototype.get_variables = function () {
 
     this.last_scroll = 0;
+    this.parentw = this.sticker.parentNode.offsetWidth;
     this.sticker_y = this.sticker.offsetTop;
     this.winh = window.innerHeight;
     // this.max_height = this.sticker.parentNode.offsetHeight - this.options.offset - this.options.bottom;
@@ -56,6 +68,8 @@
 
     this.sticker.style.position = "relative";
     this.sticker.style.top = "0px";
+    if (this.options.perc_width)
+      this.sticker.style.width = (this.parentw * this.options.perc_width) + "px";
   };
 
   S.prototype.calc = function () {

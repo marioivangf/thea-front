@@ -1,0 +1,72 @@
+<div class="list-view-layout-main-wrapper wrapper">
+  <div class="list-view-layout">
+    <div class="head-flex">
+      <h2 class="border-title flex-1">Usuarios</h2>
+      <div>
+        <a href="/forms/new" class="btn--primary">Nuevo Usuario</a>
+      </div>
+    </div>
+    <div class="aside-content-container">
+      <aside class="aside" data-sticker='{ "offset": 76, "bottom": 16 }'>
+        <div class="relative fullh">
+          <form action="#" class="form list-header">          
+            <div class="input-w-btn">
+              <input type="text" name="query" class="form-input" placeholder="Filtrar...">
+              <button type="submit" class="btn--icon-in-input" tabindex="-1">
+                <i class="material-icons">&#xE8B6;</i>
+              </button>
+            </div>
+          </form>
+          <div class="scrollable list-content card padbox-1">
+            <?php
+              $users = ["Martín Rodríguez", "Rubén Albarrán", "Joselo Rangel", "Emmanuel del Real", "Ricardo Flores"];
+              $levels = ["Residente", "Administrador", "Doctor"];
+              foreach ($users as $user):
+                $date = rand(1480076636, 1484051036);
+            ?>
+              <div class="list-item">
+                <span class="item-title flex-1" title="Formulario Alfa">
+                  <i class="material-icons vam txt-active">&#xE7FD;</i>
+                  <span class="vam"><?= $user ?></span>
+                </span>
+                <div class="flexbox">
+                  <div class="flex-1">
+                    <div class="mini-row">General Hospital</div>
+                    <div class="mini-row txt-smaller">Ult. vez <?= date("Y-m-d H:i:s", $date); ?></div>
+                  </div>
+                  <a href="/users/527" class="btn--icon" title="Editar">
+                    <i class="material-icons">&#xE254;</i>
+                  </a>
+                </div>
+                <div class="flexbox txt-light txt-smaller">
+                  <div class="flex-1"><?= $levels[array_rand($levels)]; ?></div>
+                  <div>20 nov 2015</div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      </aside>
+      <main class="content card padbox-1">
+        <form action="/users/view" class="form">
+          <div class="form-row">
+            <div class="flexbox">
+              <label class="flex-2 sright">
+                <span class="form-label">Nombre</span>
+                <input type="text" class="form-input">
+              </label>
+              <label class="flex-1 sright">
+                <span class="form-label">Apellido Paterno</span>
+                <input type="text" class="form-input">
+              </label>
+              <label class="flex-1">
+                <span class="form-label">Apellido Materno</span>
+                <input type="text" class="form-input">
+              </label>
+            </div>
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+</div>

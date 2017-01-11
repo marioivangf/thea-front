@@ -1,0 +1,167 @@
+<div class="list-view-layout-main-wrapper wrapper">
+  <div class="list-view-layout">
+    <div class="head-flex">
+      <a href="/forms" class="btn--icon">
+        <i class="material-icons">&#xE5C4;</i>
+      </a>
+      <h2 class="border-title flex-1">Nuevo Formulario</h2>
+      <div class="flexbox">
+        <!-- <button type="submit" class="btn--secondary with-icon sright" form="formulary-form">
+          <span>Vista Previa</span>
+          <i class="material-icons">&#xE8F4;</i>
+        </button> -->
+        <button type="submit" class="btn--primary with-icon" form="formulary-form">
+          <span>Guardar</span>
+          <i class="material-icons">&#xE161;</i>
+        </button>
+      </div>
+    </div>
+    <div class="aside-content-container">
+      <aside class="aside" data-sticker='{ "offset": 76, "bottom": 16 }'>
+        <div id="form-save" action="/forms" class="relative fullh" data-tabule>
+          <div class="aside-block-header tab-triggers">
+            <button class="tab-trigger" data-tabule-trigger>
+              <i class="material-icons vam">&#xE8D2;</i>
+              <span class="vam">Datos</span>
+            </button>
+            <button class="tab-trigger" data-tabule-trigger>
+              <i class="material-icons vam">&#xE8AF;</i>
+              <span class="vam">Preguntas</span>
+            </button>
+            <button class="tab-trigger" data-tabule-trigger>
+              <i class="material-icons vam">&#xE3AE;</i>
+              <span class="vam">Estilo</span>
+            </button>
+          </div>
+          <div class="card scrollable aside-tabs">
+            <div class="tab-container tab-container-full">
+              <div class="tabs">
+                <div class="tab" data-tabule-tab><!-- Datos Generales -->
+                  <form id="formulary-form" action="/forms">
+                    <div class="form-row">
+                      <label>
+                        <span class="form-label">Nombre del formulario</span>
+                        <input type="text" class="form-input" data-synced-input="af-title" placeholder="Nombre del formulario">
+                      </label>
+                    </div>
+                    <div class="form-row">
+                      <label>
+                        <span class="form-label">Nombre del formulario</span>
+                        <input type="text" class="form-input">
+                      </label>
+                    </div>
+                    <div class="form-row">
+                      <label>
+                        <span class="form-label">Nombre del formulario</span>
+                        <input type="text" class="form-input">
+                      </label>
+                    </div>
+                  </form>
+                </div>
+                <div class="tab questions-tab" data-tabule-tab>
+                  <div class="questions-tab-header">
+                    <form action="#" class="form list-header">          
+                      <div class="input-w-btn">
+                        <input type="text" name="query" class="form-input" placeholder="Filtrar...">
+                        <button type="submit" class="btn--icon-in-input" tabindex="-1">
+                          <i class="material-icons">&#xE8B6;</i>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div id="questions-source" class="questions-list">
+                    <div class="questions-list-item">
+                      <i class="material-icons" title="Número">&#xE400;</i>
+                      <span class="question">¿Cuántos años tiene?</span>
+                    </div>
+                    <div class="questions-list-item" title="Opción Múltiple">
+                      <i class="material-icons">&#xE837;</i>
+                      <span class="question">¿Qué mejoras ha presentado con el tratamiento?</span>
+                    </div>
+                    <div class="questions-list-item" title="Escala Lineal">
+                      <i class="material-icons">&#xE260;</i>
+                      <span class="question">En una escala de 1 a 5, ¿cómo se siente con el medicamento?</span>
+                    </div>
+                    <div class="questions-list-item" title="Si/No">
+                      <i class="material-icons">&#xE3F1;</i>
+                      <span class="question">¿Has tenido algún malestar después de tomar el medicamento?</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab" data-tabule-tab>
+                  <div class="form-row">
+                    <label data-input-color>
+                      <span class="flexbox">
+                        <span class="form-label flex-1">Color de fondo</span>
+                        <input id="af-bg-color" name="bg-color" type="color" class="color-input-hidden" value="#FFFFFF" data-input data-appform-style-trigger>
+                        <span class="color-input-impostor" data-impostor></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="form-row">
+                    <label data-input-color>
+                      <span class="flexbox">
+                        <span class="form-label flex-1">Color de realce</span>
+                        <input id="af-accent-color" name="accent-color" type="color" class="color-input-hidden" value="#397CEB" data-input data-appform-style-trigger>
+                        <span class="color-input-impostor" data-impostor></span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <main class="content card appform-outer">
+        <div id="af-container" class="appform-container af-bg">
+          <div class="appform-wrapper">
+            <header class="af-header">
+              <div class="af-logos">
+                <img src="/assets/img/logo-thea.png" alt="">
+                <img src="/assets/img/logo-hospital.png" alt="">
+              </div>
+              <hr class="af-separator">
+              <h2 id="af-title" class="af-title clean">Nombre del formulario</h2>
+            </header>
+            <div class="visit-block-container">
+              <div class="visit-block-legend">Visita 1</div>
+              <div id="visit-block-1" class="visit-block"></div>
+            </div>
+            <div class="visit-block-container">
+              <div class="visit-block-legend">Visita 2</div>
+              <div id="visit-block-2" class="visit-block"></div>
+            </div>
+            <div class="visit-block-container">
+              <div class="visit-block-legend">Visita 3</div>
+              <div id="visit-block-3" class="visit-block"></div>
+            </div>
+            <div class="visit-block-container">
+              <div class="visit-block-legend">Visita 4</div>
+              <div id="visit-block-4" class="visit-block"></div>
+            </div>
+            <div class="visit-block-container">
+              <div class="visit-block-legend">Bloque por defecto</div>
+              <div class="visit-block dirty">
+                <div class="appform-row">
+                  <label>
+                    <span class="appform-label af-accent">Añade tus comentarios</span>
+                    <textarea class="appform-textarea af-input" placeholder="Escribe aquí tus comentarios..."></textarea>
+                  </label>
+                  <div class="drag-handle">
+                    <i class="material-icons">&#xE25D;</i>
+                  </div>
+                </div>
+                <div class="appform-row txt-center">
+                  <button type="submit" class="appform-button af-button">
+                    Terminar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

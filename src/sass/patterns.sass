@@ -1,6 +1,9 @@
 .list-item
+  display: block
+  color: inherit
   border-top: 1px solid rgba(black, $p5)
   padding: 1rem 0
+  text-decoration: none
   .item-title
     font-size: 1.2em
     display: block
@@ -29,3 +32,80 @@
 
 .txt-active
   color: #6E91CA
+
+.aside-block-header
+  +position(absolute, 0 0 null 0)
+  background-color: white
+  border-radius: 2px
+
+// Tabs
+.tab-triggers
+  display: flex
+  align-items: center
+  height: 48px
+
+.tab-trigger
+  transition: color 200ms
+  appearance: none
+  display: block
+  flex: 1
+  padding: 0 1rem
+  height: 100%
+  background-color: transparent
+  border: none
+  font-size: 0.8rem
+  border-bottom: 1px solid #e8e8e8
+  border-right: 1px solid #e8e8e8
+  color: rgba(black, $p3)
+  cursor: pointer
+  font-weight: 600
+  i
+    font-size: 1rem
+  &:last-child
+    border-right: none
+  &:focus
+    outline: none
+  &:hover, &:focus
+    color: rgba(black, $p2)
+  &.tabule-active
+    color: $primary-color
+
+.aside-tabs
+  padding: 64px 1rem 1rem 1rem
+  padding: calc(48px + 1rem) 1rem 1rem 1rem
+
+.tab
+  display: none
+  &.tabule-active
+    display: block
+
+// Dragula
+.gu-mirror
+  position: fixed
+  margin: 0
+  z-index: 9999
+  opacity: 0.8
+
+.gu-hide
+  display: none
+
+.gu-unselectable
+  user-select: none
+
+.gu-transit
+  opacity: 0.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Théa</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/assets/styles/app.css">
+  <!-- TypeKit Fonts -->
+  <?php if ($_SERVER['HTTP_HOST'] !== 'localhost:1111'): ?>
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'sdg5qhf',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+    </script>
+  <?php endif; ?>
+  <!-- / TypeKit Fonts -->
+</head>
+<body data-path-name="<?= $path_name ?>">
+  <?php if ($path !== ''): ?>
+    <header class="topbar">
+      <div class="wrapper flexbox fullh">
+        <div class="topbar-logo">
+          <img src="/assets/img/logo-thea.png" alt="Théa">
+        </div>
+        <nav class="topbar-navigation">
+          <a href="/forms" <?= active_class($path_name, 'forms') ?>>
+            <i class="material-icons">&#xE85D;</i>
+            <span>Formularios</span>
+          </a>
+          <a href="/users" <?= active_class($path_name, 'users') ?>>
+            <i class="material-icons">&#xE7FB;</i>
+            <span>Usuarios</span>
+          </a>
+        </nav>
+        <div class="dropdown-container user-dropdown-container" data-dd>
+          <span class="user-dropdown-btn dropdown-btn" data-dd-opener>
+            <i class="material-icons user-avatar">person</i>
+            <span>Dr. Strange</span>
+            <i class="material-icons">&#xE5C5;</i>
+          </span>
+          <div class="dropdown-list">
+            <a href="javascript:void(0)" class="dropdown-list-item flexbox" data-dd-option>
+              <i class="material-icons companion-icon">&#xE7FD;</i>
+              <span>Perfil</span>
+            </a>
+            <a href="javascript:void(0)" class="dropdown-list-item flexbox" data-dd-option>
+              <i class="material-icons companion-icon">&#xE8AC;</i>
+              <span>Cerrar Sesión</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+  <?php endif; ?>
+  <?php include($view_path); ?>
+  <div class="not-responsive-overlay">
+    <div class="centered-outer">
+      <div class="centered-middle">
+        <div class="centered-inner">
+          <div class="logo">
+            <img src="/assets/img/logo-thea.png" alt="Théa">
+          </div>
+          <h4 class="notice">Por favor haz esta ventana más grande para visualizar el sitio correctamente.</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/assets/scripts/vendor.js"></script>
+  <script src="/assets/scripts/app.js"></script>
+</body>
+</html>

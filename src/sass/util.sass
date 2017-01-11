@@ -71,11 +71,6 @@
 .vam
   vertical-align: middle
 
-.wrapper
-  +margin(null auto)
-  width: 95%
-  max-width: 1000px
-
 %button-reset
   appearance: none
   border: none
@@ -105,6 +100,19 @@
 
 .clearfix
   +clearfix
+
+.marginless
+  margin: 0 !important
+
+.y-separator
+  padding: 0
+  border: 0
+  border-top: 1px solid rgba(black, $p5)
+  margin: 0.5rem auto 1rem auto
+
+.companion-icon
+  margin-right: 0.5em
+  font-size: 1.2em
 
 // Percentages columns
 
@@ -141,6 +149,22 @@
 .centered-inner
   margin: 0 auto
   display: inline-block
+
+// Empty message
+.empty-message
+  user-select: none
+  display: flex
+  align-items: center
+  justify-content: center
+  min-height: 450px
+  text-align: center
+  .icon
+    margin-bottom: 1rem
+    i
+      color: $primary-color
+      font-size: 4rem
+  .legend
+    color: rgba(black, $p4)
 
 
 

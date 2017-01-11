@@ -69,6 +69,83 @@
   @extend .btn--icon
   +position(absolute, 0 0 0 null)
   padding: 0 1rem
+  margin: auto 0
+
+.with-icon, .with-icon-right
+  position: relative
+  i
+    +position(absolute, 0 null)
+    display: flex
+    align-items: center
+    font-size: 1.2rem
+
+.with-icon
+  padding-left: 2rem
+  i
+    left: 0.5rem
+
+.with-icon-right
+  padding-right: 2rem
+  i
+    right: 0.5rem
+
+// Dropdown
+.dropdown-btn
+  cursor: pointer
+  &:focus
+    outline: none
+
+.dropdown-list
+  +position(absolute, 100% 0 null null)
+  transition: opacity 200ms, transform 200ms $swift-out, visibility 0s 200ms
+  transform-origin: right top
+  transform: scale(0.5)
+  margin: 0.5rem 0 0 0
+  visibility: hidden
+  opacity: 0
+  padding: 0.5rem
+  min-width: 150px
+  list-style: none
+  background-color: white
+  padding: 0.5rem
+  border-radius: 2px
+  z-index: 21
+  box-shadow: 0 5px 25px 3px rgba(black,0.15)
+
+.dropdown-list-item
+  transition: background-color 200ms
+  display: flex
+  align-items: center
+  white-space: nowrap
+  color: rgba(black, $p3)
+  padding: 0.5rem
+  text-decoration: none
+  border-radius: 3px
+  cursor: pointer
+  &:hover
+    background-color: rgba(black, $p5)
+
+.dropdown-container
+  +user-select(none)
+  position: relative
+  &.dd-opened .dropdown-list
+    transition-delay: 0s
+    transform: scale(1)
+    visibility: visible
+    opacity: 1
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

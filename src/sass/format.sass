@@ -4,11 +4,12 @@ $back-color: #EBF4F5
 $modular-scale-ratio: $minor-third
 
 // Shades percentages
-$p1: 0.87 // 94%
-$p2: 0.8 // 85%
+$p1: 0.87 // 87%
+$p2: 0.8 // 8%
 $p3: 0.57 // 57%
-$p4: 0.15 // 37%
-$p5: 0.07 // 17%
+$p4: 0.15 // 15%
+$p5: 0.07 // 7%
+$p6: 0.04 // 4%
 
 $topbar-height: 60px
 
@@ -43,6 +44,16 @@ img
 @for $i from 1 through 6
   h#{$i}
     font-size: modular-scale(6 - $i)
+
+.wrapper
+  +margin(null auto)
+  width: 95%
+  max-width: 1200px
+
+.smaller-wrapper
+  +margin(null auto)
+  width: 100%
+  max-width: 500px
 
 .border-title
   padding-left: 1rem

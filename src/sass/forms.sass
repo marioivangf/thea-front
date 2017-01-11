@@ -59,11 +59,37 @@
   position: relative
   input
     padding-right: 3rem
-  i
-    line-height: 2
+
+.form-label
+  display: inline-block
+  color: rgba(black, $p3)
+  font-size: 0.8rem
+  margin-bottom: 0.5em
 
 label, input[type=checkbox]
   cursor: pointer
+
+.color-input-impostor
+  +size(26px)
+  transition: background-color 200ms, box-shadow 200ms
+  display: inline-block
+  border-radius: 50%
+  font-size: 0
+  border: 3px solid white
+  box-shadow: 0 0 0 3px rgba(black, $p4)
+  margin: 3px 0.5rem
+  vertical-align: middle
+
+.color-input-hidden
+  position: absolute
+  visibility: hidden
+  opacity: 0
+  display: block
+  width: 1px
+  height: 1px
+  border: none
+  &:focus + .color-input-impostor, &:hover + .color-input-impostor
+    box-shadow: 0 0 0 3px $primary-color
 
 // Color selection
 
