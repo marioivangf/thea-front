@@ -1,3 +1,48 @@
+<?php
+
+  $number_json = '{
+    "id": 1,
+    "type": "number",
+    "question": "¿Cuántos años tiene?"
+  }';
+
+  $multiple_json = '{
+    "id": 2,
+    "type": "multiple",
+    "question": "¿Qué mejoras ha presentado con el tratamiento?",
+    "options": [
+      "Ninguna",
+      "Me siento mejor",
+      "Me salió otro brazo",
+      "Soy más guapo"
+    ]
+  }';
+
+  $scale_json = '{
+    "id": 3,
+    "type": "scale",
+    "question": "En una escala de 1 a 5, ¿Cómo se siente con el medicamento?",
+    "options": [
+      "Muy mal",
+      "Mal",
+      "Igual",
+      "Mejor",
+      "Mucho mejor"
+    ]
+  }';
+
+  $yes_no_json = '{
+    "id": 4,
+    "type": "yes-no",
+    "question": "¿Has tenido algún malestar después de tomar el medicamento?",
+    "options": [
+      "Si",
+      "No"
+    ]
+  }';
+
+?>
+
 <div class="list-view-layout-main-wrapper wrapper">
   <div class="list-view-layout">
     <div class="head-flex">
@@ -6,10 +51,6 @@
       </a>
       <h2 class="border-title flex-1">Nuevo Formulario</h2>
       <div class="flexbox">
-        <!-- <button type="submit" class="btn--secondary with-icon sright" form="formulary-form">
-          <span>Vista Previa</span>
-          <i class="material-icons">&#xE8F4;</i>
-        </button> -->
         <button type="submit" class="btn--primary with-icon" form="formulary-form">
           <span>Guardar</span>
           <i class="material-icons">&#xE161;</i>
@@ -70,19 +111,19 @@
                     </form>
                   </div>
                   <div id="questions-source" class="questions-list">
-                    <div class="questions-list-item">
+                    <div class="questions-list-item" title="Número" data-question-definition="<?= htmlspecialchars($number_json) ?>">
                       <i class="material-icons" title="Número">&#xE400;</i>
                       <span class="question">¿Cuántos años tiene?</span>
                     </div>
-                    <div class="questions-list-item" title="Opción Múltiple">
+                    <div class="questions-list-item" title="Opción Múltiple" data-question-definition="<?= htmlspecialchars($multiple_json) ?>">
                       <i class="material-icons">&#xE837;</i>
                       <span class="question">¿Qué mejoras ha presentado con el tratamiento?</span>
                     </div>
-                    <div class="questions-list-item" title="Escala Lineal">
+                    <div class="questions-list-item" title="Escala Lineal" data-question-definition="<?= htmlspecialchars($scale_json) ?>">
                       <i class="material-icons">&#xE260;</i>
                       <span class="question">En una escala de 1 a 5, ¿cómo se siente con el medicamento?</span>
                     </div>
-                    <div class="questions-list-item" title="Si/No">
+                    <div class="questions-list-item" title="Si/No" data-question-definition="<?= htmlspecialchars($yes_no_json) ?>">
                       <i class="material-icons">&#xE3F1;</i>
                       <span class="question">¿Has tenido algún malestar después de tomar el medicamento?</span>
                     </div>
@@ -114,7 +155,7 @@
         </div>
       </aside>
       <main class="content card appform-outer">
-        <div id="af-container" class="appform-container af-bg">
+        <div id="af-container" class="af-container">
           <div class="appform-wrapper">
             <header class="af-header">
               <div class="af-logos">
@@ -144,16 +185,18 @@
               <div class="visit-block-legend">Bloque por defecto</div>
               <div class="visit-block dirty">
                 <div class="appform-row">
-                  <label>
-                    <span class="appform-label af-accent">Añade tus comentarios</span>
-                    <textarea class="appform-textarea af-input" placeholder="Escribe aquí tus comentarios..."></textarea>
-                  </label>
-                  <div class="drag-handle">
-                    <i class="material-icons">&#xE25D;</i>
+                  <div class="relative">
+                    <label>
+                      <span class="af-label">Añade tus comentarios</span>
+                      <textarea class="af-textarea" placeholder="Escribe aquí tus comentarios..."></textarea>
+                    </label>
+                    <div class="drag-handle">
+                      <i class="material-icons">&#xE25D;</i>
+                    </div>
                   </div>
                 </div>
                 <div class="appform-row txt-center">
-                  <button type="submit" class="appform-button af-button">
+                  <button type="submit" class="af-submit">
                     Terminar
                   </button>
                 </div>
@@ -165,3 +208,128 @@
     </div>
   </div>
 </div>
+<?= '<script id="number-quest-tmpl" type="x-tmpl-mustache">' ?>
+  <div class="appform-row">
+    <div class="relative">
+      <label>
+        <span class="af-label">{{ question }}</span>
+        <input type="number" class="af-input" name="{{ id }}">
+      </label>
+      <div class="drag-handle material-icons">
+        &#xE25D;
+      </div>
+    </div>
+  </div>
+<?= '</script>' ?>
+<?= '<script id="multiple-quest-tmpl" type="x-tmpl-mustache">' ?>
+  <div class="appform-row">
+    <div class="relative">
+      <span class="af-label">{{ question }}</span>
+      <div class="af-checkbox">
+        {{# options }}
+          <label>
+            <input type="checkbox" name="{{ id }}" value="{{ . }}">
+            <span class="af-checkbox-impostor">
+              <i class="material-icons">&#xE5CA;</i>
+            </span>
+            <span class="af-list-label">{{ . }}</span>
+          </label>
+        {{/ options }}
+      </div>
+      <div class="drag-handle material-icons">
+        &#xE25D;
+      </div>
+    </div>
+  </div>
+<?= '</script>' ?>
+<?= '<script id="scale-quest-tmpl" type="x-tmpl-mustache">' ?>
+  <div class="appform-row">
+    <div class="relative">
+      <span class="af-label">{{ question }}</span>
+      <div class="af-radio af-scale">
+        {{# options }}
+          <label>
+            <input type="radio" name="{{ id }}" value="{{ . }}">
+            <span class="af-radio-active"></span>
+            <span class="af-radio-label">{{ . }}</span>
+          </label>
+        {{/ options }}
+      </div>
+      <div class="drag-handle material-icons">
+        &#xE25D;
+      </div>
+    </div>
+  </div>
+<?= '</script>' ?>
+<?= '<script id="yes-no-quest-tmpl" type="x-tmpl-mustache">' ?>
+  <div class="appform-row">
+    <div class="relative">
+      <span class="af-label">{{ question }}</span>
+      <div class="af-radio">
+        {{# options }}
+          <label>
+            <input type="radio" name="{{ id }}" value="{{ . }}">
+            <span class="af-radio-active"></span>
+            <span class="af-radio-label">{{ . }}</span>
+          </label>
+        {{/ options }}
+      </div>
+      <div class="drag-handle material-icons">
+        &#xE25D;
+      </div>
+    </div>
+  </div>
+<?= '</script>' ?>
+<?= '<script id="styles-quest-tmpl" type="x-tmpl-mustache">' ?>
+  .appform-row.gu-mirror {
+    background-color: {{ bg }};
+    box-shadow: 0 0 0 2rem {{ bg }};
+  }
+  .af-container {
+    background-color: {{ bg }};
+    color: {{ text }};
+  }
+  .af-label {
+    color: {{ accent }};
+  }
+  .af-input, .af-textarea {
+    background-color: {{ input_bg }};
+    box-shadow: 0 0 0 1px {{ bg }}, 0 0 0 0px {{ accent }};
+  }
+  .af-input:focus, .af-textarea:focus {
+    box-shadow: 0 0 0 1px {{ bg }}, 0 0 0 5px {{ accent }};
+  }
+  .af-submit {
+    background-color: {{ accent }};
+    color: {{ accent_text }};
+  }
+  .af-submit:hover, .af-submit:focus {
+    background-color: {{ accent_darken }};
+  }
+  .af-checkbox input[type=checkbox]:checked + .af-checkbox-impostor {
+    background-color: {{ accent }};
+  }
+  .af-checkbox-impostor {
+    background-color: {{ input_bg }};
+    color: {{ accent_text }};
+  }
+  .af-radio label {
+    background-color: {{ input_bg }};
+  }
+  .af-radio label:after {
+    color: {{ text }};
+  }
+  .af-radio-active {
+    background-color: {{ accent }};
+  }
+  .af-radio input[type=radio]:checked + .af-radio-active + .af-radio-label {
+    color: {{ accent_text }};
+  }
+<?= '</script>' ?>
+
+
+
+
+
+
+

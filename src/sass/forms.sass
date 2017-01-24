@@ -42,7 +42,7 @@
   background-color: rgba(black, $p5)
   font-size: 1rem
   cursor: pointer
-  background-image: url("/img/drop_down.svg")
+  background-image: url("/assets/img/drop_down.svg")
   background-repeat: no-repeat
   background-position: 90% center
   background-position: calc(100% - 0.5rem) center
@@ -92,7 +92,6 @@ label, input[type=checkbox]
     box-shadow: 0 0 0 3px $primary-color
 
 // Color selection
-
 .color-select-cont
   +user-select(none)
   display: inline-block
@@ -177,6 +176,28 @@ label, input[type=checkbox]
   position: absolute
   z-index: -1
 
+// Question creation options
+.quest-option
+  +user-select(none)
+  margin-bottom: 1rem
+
+.drag-handle
+  width: 32px
+  height: 32px
+  color: rgba(black, $p4)
+  text-align: center
+  line-height: 32px
+  cursor: move
+  vertical-align: middle
+  i
+    line-height: 32px
+    vertical-align: middle
+  &:hover
+    color: rgba(black, $p3)
+
+.question-options
+  border: 3px dashed rgba(black, $p4)
+  padding: 1rem
 
 
 
