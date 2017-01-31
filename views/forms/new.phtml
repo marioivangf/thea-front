@@ -212,8 +212,8 @@
   <div class="appform-row">
     <div class="relative">
       <label>
-        <span class="af-label">{{ question }}</span>
-        <input type="number" class="af-input" name="{{ id }}">
+        <span class="af-label"><% question %></span>
+        <input type="number" class="af-input" name="<% id %>">
       </label>
       <div class="drag-handle material-icons">
         &#xE25D;
@@ -224,17 +224,17 @@
 <?= '<script id="multiple-quest-tmpl" type="x-tmpl-mustache">' ?>
   <div class="appform-row">
     <div class="relative">
-      <span class="af-label">{{ question }}</span>
+      <span class="af-label"><% question %></span>
       <div class="af-checkbox">
-        {{# options }}
+        <%# options %>
           <label>
-            <input type="checkbox" name="{{ id }}" value="{{ . }}">
+            <input type="checkbox" name="<% id %>" value="<% . %>">
             <span class="af-checkbox-impostor">
               <i class="material-icons">&#xE5CA;</i>
             </span>
-            <span class="af-list-label">{{ . }}</span>
+            <span class="af-list-label"><% . %></span>
           </label>
-        {{/ options }}
+        <%/ options %>
       </div>
       <div class="drag-handle material-icons">
         &#xE25D;
@@ -245,15 +245,15 @@
 <?= '<script id="scale-quest-tmpl" type="x-tmpl-mustache">' ?>
   <div class="appform-row">
     <div class="relative">
-      <span class="af-label">{{ question }}</span>
+      <span class="af-label"><% question %></span>
       <div class="af-radio af-scale">
-        {{# options }}
+        <%# options %>
           <label>
-            <input type="radio" name="{{ id }}" value="{{ . }}">
+            <input type="radio" name="<% id %>" value="<% . %>">
             <span class="af-radio-active"></span>
-            <span class="af-radio-label">{{ . }}</span>
+            <span class="af-radio-label"><% . %></span>
           </label>
-        {{/ options }}
+        <%/ options %>
       </div>
       <div class="drag-handle material-icons">
         &#xE25D;
@@ -264,15 +264,15 @@
 <?= '<script id="yes-no-quest-tmpl" type="x-tmpl-mustache">' ?>
   <div class="appform-row">
     <div class="relative">
-      <span class="af-label">{{ question }}</span>
+      <span class="af-label"><% question %></span>
       <div class="af-radio">
-        {{# options }}
+        <%# options %>
           <label>
-            <input type="radio" name="{{ id }}" value="{{ . }}">
+            <input type="radio" name="<% id %>" value="<% . %>">
             <span class="af-radio-active"></span>
-            <span class="af-radio-label">{{ . }}</span>
+            <span class="af-radio-label"><% . %></span>
           </label>
-        {{/ options }}
+        <%/ options %>
       </div>
       <div class="drag-handle material-icons">
         &#xE25D;
@@ -282,48 +282,48 @@
 <?= '</script>' ?>
 <?= '<script id="styles-quest-tmpl" type="x-tmpl-mustache">' ?>
   .appform-row.gu-mirror {
-    background-color: {{ bg }};
-    box-shadow: 0 0 0 2rem {{ bg }};
+    background-color: <% bg %>;
+    box-shadow: 0 0 0 2rem <% bg %>;
   }
   .af-container {
-    background-color: {{ bg }};
-    color: {{ text }};
+    background-color: <% bg %>;
+    color: <% text %>;
   }
   .af-label {
-    color: {{ accent }};
+    color: <% accent %>;
   }
   .af-input, .af-textarea {
-    background-color: {{ input_bg }};
-    box-shadow: 0 0 0 1px {{ bg }}, 0 0 0 0px {{ accent }};
+    background-color: <% input_bg %>;
+    box-shadow: 0 0 0 1px <% bg %>, 0 0 0 0px <% accent %>;
   }
   .af-input:focus, .af-textarea:focus {
-    box-shadow: 0 0 0 1px {{ bg }}, 0 0 0 5px {{ accent }};
+    box-shadow: 0 0 0 1px <% bg %>, 0 0 0 5px <% accent %>;
   }
   .af-submit {
-    background-color: {{ accent }};
-    color: {{ accent_text }};
+    background-color: <% accent %>;
+    color: <% accent_text %>;
   }
   .af-submit:hover, .af-submit:focus {
-    background-color: {{ accent_darken }};
+    background-color: <% accent_darken %>;
   }
   .af-checkbox input[type=checkbox]:checked + .af-checkbox-impostor {
-    background-color: {{ accent }};
+    background-color: <% accent %>;
   }
   .af-checkbox-impostor {
-    background-color: {{ input_bg }};
-    color: {{ accent_text }};
+    background-color: <% input_bg %>;
+    color: <% accent_text %>;
   }
   .af-radio label {
-    background-color: {{ input_bg }};
+    background-color: <% input_bg %>;
   }
   .af-radio label:after {
-    color: {{ text }};
+    color: <% text %>;
   }
   .af-radio-active {
-    background-color: {{ accent }};
+    background-color: <% accent %>;
   }
   .af-radio input[type=radio]:checked + .af-radio-active + .af-radio-label {
-    color: {{ accent_text }};
+    color: <% accent_text %>;
   }
 <?= '</script>' ?>
 

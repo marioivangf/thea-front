@@ -23,9 +23,11 @@
 
     this.options = extend(default_options, opts);
     this.sticker = sticker;
+    this.parent = this.sticker.parentNode;
     this.last_scroll = 0;
     this.ticking = false;
     this.down = false;
+    this.bottom = false;
     this.get_variables();
     this.set_events();
     this.reset_sticker();
@@ -35,9 +37,12 @@
   S.prototype.get_variables = function () {
 
     this.last_scroll = 0;
-    this.parentw = this.sticker.parentNode.offsetWidth;
-    this.sticker_y = this.sticker.offsetTop;
+    this.parentw = this.parent.offsetWidth;
+    this.parenth = this.inner_height(this.parent);
+    this.parenty = this.parent.offsetTop;
+    this.stickery = this.sticker.offsetTop;
     this.winh = window.innerHeight;
+    this.pb = this.parenty + this.parenth;
     // this.max_height = this.sticker.parentNode.offsetHeight - this.options.offset - this.options.bottom;
   };
 
@@ -61,6 +66,7 @@
     this.reset_sticker();
     this.get_variables();
     this.down = false;
+    this.bottom = false;
     this.scroll_handler();
   };
 
@@ -81,10 +87,12 @@
     var off = this.options.offset;
     var bot = this.options.bottom;
     var wh = this.winh;
-    var y = this.sticker_y;
+    var y = this.stickery;
+    var h = this.sticker.offsetHeight;
 
     var line = y - off - scroll;
     var height = wh - y + scroll;
+    var b = scroll + off + h;
     // height = (height >= this.max_height) ? this.max_height : height;
 
     if (line >= 0) {
@@ -95,12 +103,25 @@
 
     } else {
 
-      if (!this.down) {
-        el.style.height = wh - off - bot + "px";
-        el.style.position = "fixed";
-        el.style.top = off + "px";
+      if (b > this.pb) {
+        el.style.position = "relative";
+        el.style.top = (this.parenth - h) + "px";
+        this.bottom = true;
+      } else this.bottom = false;
+      if (!this.down || !this.bottom) {
+        if (this.pb > b) {
+          el.style.height = wh - off - bot + "px";
+          el.style.position = "fixed";
+          el.style.top = off + "px";
+        }
       } this.down = true;
     }
+  };
+
+  S.prototype.inner_height = function (element) {
+    var styles = window.getComputedStyle(element);
+    var padding = parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
+    return element.clientHeight - padding;
   };
 
   // Util

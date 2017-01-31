@@ -199,7 +199,7 @@
     _(questions).each(function (question) {
       var tmpl = document.getElementById(question+"-quest-tmpl").innerHTML;
       question_templs[question] = tmpl;
-      Mustache.parse(question_templs[question]);
+      Mustache.parse(question_templs[question], ["<%", "%>"]);
     });
 
     var dragula_containers = [questions_source];
