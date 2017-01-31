@@ -1,0 +1,41 @@
+.notice
+  position: relative
+  padding: 14px
+  border-radius: 2px
+  background-color: $error-color
+  margin-bottom: 1rem
+  color: white
+
+.notice-error
+  background-color: $error-color
+  box-shadow: 0 0 0 3px shade($error-color, 10%)
+
+.notice-warning
+  background-color: $warning-color
+  box-shadow: 0 0 0 3px shade($warning-color, 10%)
+
+.notice-success
+  background-color: $success-color
+  box-shadow: 0 0 0 3px shade($success-color, 10%)
+
+.notice-close
+  +position(absolute, 0 0 null null)
+  user-select: none
+  transition: color 200ms
+  appearance: none
+  margin: 0
+  padding: 10px
+  line-height: 1
+  border: none
+  color: none
+  background-color: transparent
+  color: rgba(white, $p2)
+  cursor: pointer
+  &:focus
+    outline: none
+  &:hover
+    color: white
+
+
+
+

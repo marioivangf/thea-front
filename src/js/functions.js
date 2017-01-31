@@ -32,6 +32,12 @@
     target.parentNode.classList.toggle(target.dataset.parentClassToggle);
   });
 
+  // Toggle classes in parents
+  each_node_evt("[data-close-parent]", "click", function (event) {
+    var target = event.currentTarget;
+    target.parentNode.style.display = "none";
+  });
+
   // Toggle classes for dropdowns
   each_node_evt("[data-dropdown-toggle]", "click", function (event) {
     event.stopPropagation();
