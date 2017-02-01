@@ -230,10 +230,21 @@
     });
 
     drake.on("drop", function (element, container, src, sibling) {
+      // Get definition
       var def = element.dataset.questionDefinition;
-      if (def) {
-        drake.cancel(true);
-        var definition = JSON.parse(def);
+      // Render question
+      drake.cancel(true);
+      var definition = JSON.parse(def);
+      // Validate if question already in block
+      var exists = container.querySelectorAll('[data-id="'+definition.id+'"]');
+      if (exists.length > 0) {
+        alert("Esta pregunta ya existe para esta visita");
+      } else {
+        // Else do render
+        if (!element.classList.contains("js-source"))
+          element.remove();
+        definition.visit_block = container.dataset.blockName;
+        definition.definition = def;
         var tmpl = question_templs[definition.type];
         var rendered = Mustache.render(tmpl, definition);
         var wrapper= document.createElement("div");

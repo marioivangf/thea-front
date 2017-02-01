@@ -111,19 +111,19 @@
                     </form>
                   </div>
                   <div id="questions-source" class="questions-list">
-                    <div class="questions-list-item" title="Número" data-question-definition="<?= htmlspecialchars($number_json) ?>">
+                    <div class="questions-list-item js-source" title="Número" data-id="1" data-question-definition="<?= htmlspecialchars($number_json) ?>">
                       <i class="material-icons" title="Número">&#xE400;</i>
                       <span class="question">¿Cuántos años tiene?</span>
                     </div>
-                    <div class="questions-list-item" title="Opción Múltiple" data-question-definition="<?= htmlspecialchars($multiple_json) ?>">
+                    <div class="questions-list-item js-source" title="Opción Múltiple" data-id="2" data-question-definition="<?= htmlspecialchars($multiple_json) ?>">
                       <i class="material-icons">&#xE837;</i>
                       <span class="question">¿Qué mejoras ha presentado con el tratamiento?</span>
                     </div>
-                    <div class="questions-list-item" title="Escala Lineal" data-question-definition="<?= htmlspecialchars($scale_json) ?>">
+                    <div class="questions-list-item js-source" title="Escala Lineal" data-id="3" data-question-definition="<?= htmlspecialchars($scale_json) ?>">
                       <i class="material-icons">&#xE260;</i>
                       <span class="question">En una escala de 1 a 5, ¿cómo se siente con el medicamento?</span>
                     </div>
-                    <div class="questions-list-item" title="Si/No" data-question-definition="<?= htmlspecialchars($yes_no_json) ?>">
+                    <div class="questions-list-item js-source" title="Si/No" data-id="4" data-question-definition="<?= htmlspecialchars($yes_no_json) ?>">
                       <i class="material-icons">&#xE3F1;</i>
                       <span class="question">¿Has tenido algún malestar después de tomar el medicamento?</span>
                     </div>
@@ -167,19 +167,19 @@
             </header>
             <div class="visit-block-container">
               <div class="visit-block-legend">Visita 1</div>
-              <div id="visit-block-1" class="visit-block"></div>
+              <div id="visit-block-1" class="visit-block" data-block-name="visit1"></div>
             </div>
             <div class="visit-block-container">
               <div class="visit-block-legend">Visita 2</div>
-              <div id="visit-block-2" class="visit-block"></div>
+              <div id="visit-block-2" class="visit-block" data-block-name="visit2"></div>
             </div>
             <div class="visit-block-container">
               <div class="visit-block-legend">Visita 3</div>
-              <div id="visit-block-3" class="visit-block"></div>
+              <div id="visit-block-3" class="visit-block" data-block-name="visit3"></div>
             </div>
             <div class="visit-block-container">
               <div class="visit-block-legend">Visita 4</div>
-              <div id="visit-block-4" class="visit-block"></div>
+              <div id="visit-block-4" class="visit-block" data-block-name="visit4"></div>
             </div>
             <div class="visit-block-container">
               <div class="visit-block-legend">Bloque por defecto</div>
@@ -209,7 +209,8 @@
   </div>
 </div>
 <?= '<script id="number-quest-tmpl" type="x-tmpl-mustache">' ?>
-  <div class="appform-row">
+  <div class="appform-row" data-id="<% id %>" data-question-definition="<% definition %>">
+    <input type="hidden" name="<% visit_block %>[]" value="<% id %>">
     <div class="relative">
       <label>
         <span class="af-label"><% question %></span>
@@ -222,7 +223,8 @@
   </div>
 <?= '</script>' ?>
 <?= '<script id="multiple-quest-tmpl" type="x-tmpl-mustache">' ?>
-  <div class="appform-row">
+  <div class="appform-row" data-id="<% id %>" data-question-definition="<% definition %>">
+    <input type="hidden" name="<% visit_block %>[]" value="<% id %>">
     <div class="relative">
       <span class="af-label"><% question %></span>
       <div class="af-checkbox">
@@ -243,7 +245,8 @@
   </div>
 <?= '</script>' ?>
 <?= '<script id="scale-quest-tmpl" type="x-tmpl-mustache">' ?>
-  <div class="appform-row">
+  <div class="appform-row" data-id="<% id %>" data-question-definition="<% definition %>">
+    <input type="hidden" name="<% visit_block %>[]" value="<% id %>">
     <div class="relative">
       <span class="af-label"><% question %></span>
       <div class="af-radio af-scale">
@@ -262,7 +265,8 @@
   </div>
 <?= '</script>' ?>
 <?= '<script id="yes-no-quest-tmpl" type="x-tmpl-mustache">' ?>
-  <div class="appform-row">
+  <div class="appform-row" data-id="<% id %>" data-question-definition="<% definition %>">
+    <input type="hidden" name="<% visit_block %>[]" value="<% id %>">
     <div class="relative">
       <span class="af-label"><% question %></span>
       <div class="af-radio">
