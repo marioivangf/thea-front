@@ -68,6 +68,21 @@
     }
   });
 
+  // Requests init
+  var forms = document.querySelectorAll("[data-searcher]");
+  _(forms).each(function (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var endpoint = form.action;
+      var target = form.dataset.searcher;
+      var data = new FormData(form);
+      qwest.post(endpoint, data).then(function(xhr, response) {
+        console.log(response);
+        document.getElementById(target).innerHTML = response;
+      });
+    });
+  });
+
   // Color inputs
   _(document.querySelectorAll("[data-input-color]")).each(function (node) {
     var input = node.querySelector("[data-input]");
@@ -76,17 +91,17 @@
       impostor.style.backgroundColor = input.value;
     }, false);
     impostor.style.backgroundColor = input.value;
-  })
+  });
 
   // Dropdown inititalization
   _(document.querySelectorAll("[data-dd]")).each(function (node) {
     new Dropdown(node);
-  })
+  });
 
   // Tabule inititalization
   _(document.querySelectorAll("[data-tabule]")).each(function (node) {
     new Tabule(node);
-  })
+  });
 
   // Sticker JS init
   _(document.querySelectorAll("[data-sticker]")).each(function (node) {

@@ -10,15 +10,15 @@
     <div class="aside-content-container">
       <aside class="aside" data-sticker='{ "offset": 76, "bottom": 16 }'>
         <div class="relative fullh">
-          <form action="#" class="form list-header">          
+          <form action="/search.php" class="form list-header" data-searcher="search-target">          
             <div class="input-w-btn">
-              <input type="text" name="query" class="form-input" placeholder="Filtrar...">
+              <input type="text" name="q" class="form-input" placeholder="Filtrar...">
               <button type="submit" class="btn--icon-in-input" tabindex="-1">
                 <i class="material-icons">&#xE8B6;</i>
               </button>
             </div>
           </form>
-          <div class="scrollable list-content card padbox-1">
+          <div id="search-target" class="scrollable list-content card padbox-1">
             <?php
               $forms = ["Formulario Alfa Falfa", "Medicamento Experimental", "Medicamento Alfa", "Medicamento Beta", "Medicamento Gamma"];
               foreach ($forms as $form):
