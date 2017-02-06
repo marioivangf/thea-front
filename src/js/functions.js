@@ -58,15 +58,49 @@
 
     var input = event.currentTarget;
     var image = input.parentNode.querySelector("img");
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
+
+    if (input.value) {
+      get_input_image(input, function (data) {
         input.parentNode.classList.remove("clean");
-        image.src = e.target.result;
-      }
-      reader.readAsDataURL(input.files[0]);
+        image.src = data;
+      });
+    } else {
+      input.parentNode.classList.add("clean");
+      image.src = "";
     }
   });
+
+  // Image inputs with preview
+  each_node_evt("[data-proxy-click]", "click", function (event) {
+    var element = event.currentTarget;
+    document.querySelector(element.dataset.proxyClick).click();
+  });
+
+  // Unset inputs
+  each_node_evt("[data-unset]", "click", function (event) {
+    var element = event.currentTarget;
+    var input = document.querySelector(element.dataset.unset);
+    input.value = "";
+    input.dispatchEvent(new Event("change"));
+  });
+
+  // Med logo in form construction
+  var med_logo_in = document.getElementById("med-logo-in");
+  if (med_logo_in) {
+    var logos_cont = document.getElementById("af-logos");
+    med_logo_in.addEventListener("change", function () {
+      var logo = document.getElementById("med-logo");
+      if (logo) logo.parentNode.removeChild(logo);
+      if (med_logo_in.value) {
+        get_input_image(med_logo_in, function (data) {
+          var image = new Image();
+          image.id = "med-logo";
+          image.src = data;
+          logos_cont.appendChild(image);
+        });
+      }
+    });
+  }
 
   // Requests init
   var forms = document.querySelectorAll("[data-searcher]");
@@ -77,7 +111,6 @@
       var target = form.dataset.searcher;
       var data = new FormData(form);
       qwest.post(endpoint, data).then(function(xhr, response) {
-        console.log(response);
         document.getElementById(target).innerHTML = response;
       });
     });
@@ -96,6 +129,69 @@
   // Dropdown inititalization
   _(document.querySelectorAll("[data-dd]")).each(function (node) {
     new Dropdown(node);
+  });
+
+  // Tagin inititalization
+  _(document.querySelectorAll("[data-tagin]")).each(function (node) {
+    new Tagin(node);
+  });
+
+  // Autocomplete inititalization
+  _(document.querySelectorAll("[data-autocomplete]")).each(function (node) {
+    var xhr;
+    var path = node.dataset.autocomplete;
+    new autoComplete({
+      selector: node,
+      minChars: 2,
+      source: function (term, response) {
+        try { xhr.abort(); } catch (e) {}
+        qwest.post(path, { q: term }).then(function(xhr, data) {
+          response(data);
+        });
+      }
+    });
+  });
+
+  // Woofmark inititalization
+  _(document.querySelectorAll("[data-woofmark]")).each(function (node) {
+    var woof = woofmark(node, {
+      markdown: false,
+      html: false,
+      parseHTML: domador,
+      parseMarkdown: megamark,
+      defaultMode: "wysiwyg",
+      render: {
+        modes: function (button, id) { return false; },
+        commands: function (command, id) {
+          if (id === "code" || id === "image") {
+            command.style.display = "none";
+            return false;
+          }
+          var icon = "";
+          switch(id) {
+            case "bold":
+              icon = "&#xE238;"; break;
+            case "italic":
+              icon = "&#xE23F;"; break;
+            case "quote":
+              icon = "&#xE244;"; break;
+            case "ol":
+              icon = "&#xE242;"; break;
+            case "ul":
+              icon = "&#xE241;"; break;
+            case "heading":
+              icon = "&#xE245;"; break;
+            case "link":
+              icon = "&#xE250;"; break;
+          }
+          command.innerHTML = '<i class="material-icons">'+icon+'</i>';
+        }
+      }
+    });
+    var form = node.form;
+    form.addEventListener("submit", function () {
+      node.value = woof.value();
+    });
   });
 
   // Tabule inititalization
@@ -118,8 +214,28 @@
     btn.addEventListener("click", function () {
       var clone = sample_clone.cloneNode(true);
       list.appendChild(clone);
+      serialize_ques_options();
     });
   });
+
+  // Form construction submit
+  var form = document.getElementById("formulary-form");
+  if (form) {
+    var input_data = document.getElementById("form-data");
+    form.addEventListener("submit", function (event) {
+      // event.preventDefault();
+      var data = [];
+      for (var i = 1; i <= 4; i++) {
+        var ques = [];
+        var block = document.getElementById("visit-block-"+i);
+        _(block.children).each(function (child) {
+          ques.push(child.dataset.id);
+        });
+        data.push(ques);
+      }
+      input_data.value = JSON.stringify(data);
+    });
+  }
 
   // Questions creation init
   var quests = document.getElementById("question-options");
@@ -128,7 +244,6 @@
     var quest_type_sel = document.getElementById("quest-type");
     var option_check = function () {
       var opt = quest_type_sel.options[quest_type_sel.selectedIndex];
-      console.log(opt.dataset.options);
       quests_cont.style.display = opt.dataset.options ? "block" : "none";
     };
     quest_type_sel.addEventListener("change", option_check);
@@ -140,13 +255,17 @@
         return handle.classList.contains("drag-handle");
       }
     });
+    quest_drake.on("dragend", function (el) {
+      serialize_ques_options();
+    });
   }
 
   // Forms Statistics
   Chart.defaults.global.title.display = true;
-
+  // Gender Pie Chart
   var gender_chart_dom = document.getElementById("pie-chart");
   if (gender_chart_dom) {
+    var data = JSON.parse(gender_chart_dom.dataset.chart);
     var gender_chart = new Chart(gender_chart_dom.getContext('2d'), {
       type: 'doughnut',
       options: {
@@ -160,7 +279,7 @@
             "#34495e",
             "#3498db"
           ],
-          data: [522, 323]
+          data: data // [522, 323]
         }]
       }
     });
@@ -168,6 +287,7 @@
 
   var age_chart_dom = document.getElementById('age-chart');
   if (age_chart_dom) {
+    var data = JSON.parse(age_chart_dom.dataset.chart);
     var age_chart = new Chart(age_chart_dom.getContext('2d'), {
       type: 'bar',
       options: {
@@ -178,11 +298,11 @@
         labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
         datasets: [{
           label: 'Mujeres',
-          data: [12, 19, 3, 17, 6, 3, 7],
+          data: data.women, // [12, 19, 3, 17, 6, 3, 7]
           backgroundColor: "#34495e"
         }, {
           label: 'Hombres',
-          data: [2, 29, 5, 5, 2, 3, 10],
+          data: data.men, // [2, 29, 5, 5, 2, 3, 10]
           backgroundColor: "#3498db"
         }]
       }
@@ -191,6 +311,7 @@
 
   var patients_chart_dom = document.getElementById('patients-chart');
   if (patients_chart_dom) {
+    var data = JSON.parse(patients_chart_dom.dataset.chart);
     var patients_chart = new Chart(patients_chart_dom.getContext('2d'), {
       type: 'line',
       options: {
@@ -203,7 +324,7 @@
         labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
         datasets: [{
           label: 'Encuestados',
-          data: [40, 19, 42, 17, 56, 12, 38],
+          data: data, // [40, 19, 42, 17, 56, 12, 38]
           backgroundColor: "#34495e"
         }]
       }
@@ -215,7 +336,7 @@
 
   if (questions_source) {
 
-    var questions = ["number", "multiple", "scale", "yes-no", "styles"];
+    var questions = ["number", "select", "multiple", "scale", "yes-no", "radio", "osdi", "styles"];
     var question_templs = {};
     _(questions).each(function (question) {
       var tmpl = document.getElementById(question+"-quest-tmpl").innerHTML;
@@ -343,6 +464,26 @@
 
   function nodes_to_arr (nodes) {
     return Array.prototype.slice.call(nodes);
+  }
+
+  function serialize_ques_options () {
+    var cont = document.getElementById("question-options");
+    _(cont.children).each(function (node, index) {
+      var in_value = node.querySelector("[data-value]");
+      var in_option = node.querySelector("[data-option]");
+      in_value.name="value-"+index;
+      in_option.name="option-"+index;
+    });
+  }
+
+  function get_input_image (input, cb) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        cb(event.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    } else return false;
   }
 
 })();

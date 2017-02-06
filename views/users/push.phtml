@@ -1,0 +1,31 @@
+<div class="list-view-layout-main-wrapper wrapper">
+  <div class="list-view-layout smallest-container">
+    <div class="head-flex">
+      <a href="/users/" class="btn--icon">
+        <i class="material-icons">&#xE5C4;</i>
+      </a>
+      <h2 class="border-title flex-1">Enviar Notificación</h2>
+    </div>
+    <div class="card padbox-1">
+      <form action="/users/" class="form">
+        <div class="form-row">
+          <label>
+            <span class="form-label">Enviar a</span>
+            <input type="text" data-tagin data-autocomplete="/users.php" placeholder="Emails separados por comas...">
+          </label>
+        </div>
+        <div class="form-row">
+          <div>
+            <span class="form-label">Contenido</span>
+            <div>
+              <textarea id="push-message" name="content" data-woofmark></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="form-row txt-right">
+          <button type="submit" class="btn--primary">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

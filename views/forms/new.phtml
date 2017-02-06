@@ -18,6 +18,29 @@
     ]
   }';
 
+  $radio_json = '{
+    "id": 2,
+    "type": "radio",
+    "question": "¿Qué describiría mejor su estado?",
+    "options": [
+      "Ninguna",
+      "Renacido",
+      "Destrozado",
+      "En la calle de la amargura"
+    ]
+  }';
+
+  $select_json = '{
+    "id": 2,
+    "type": "select",
+    "question": "Seleccione una opción",
+    "options": [
+      "No quiero",
+      "Está bien",
+      "Mejor esta"
+    ]
+  }';
+
   $scale_json = '{
     "id": 3,
     "type": "scale",
@@ -39,6 +62,12 @@
       "Si",
       "No"
     ]
+  }';
+
+  $osdi_json = '{
+    "id": 1,
+    "type": "osdi",
+    "question": "Prueba OSDI"
   }';
 
 ?>
@@ -79,11 +108,31 @@
               <div class="tabs">
                 <div class="tab" data-tabule-tab><!-- Datos Generales -->
                   <form id="formulary-form" action="/forms">
+                    <input id="form-data" type="hidden" name="form-data">
                     <div class="form-row">
                       <label>
                         <span class="form-label">Nombre del formulario</span>
                         <input type="text" class="form-input" data-synced-input="af-title" placeholder="Nombre del formulario">
                       </label>
+                    </div>
+                    <div class="form-row">
+                      <div data-image-input class="image-input clean">
+                        <input id="med-logo-in" type="file" class="hidden-file-input">
+                        <span class="form-label">Logo Medicamento</span>
+                        <div class="image-placeholder">
+                          <img class="image">
+                          <div class="actions">
+                            <div>
+                              <button type="button" class="btn--icon--white" data-proxy-click="#med-logo-in">
+                                <i class="material-icons">&#xE3F4;</i>
+                              </button>
+                              <button type="button" class="btn--icon--white" data-unset="#med-logo-in">
+                                <i class="material-icons">&#xE872;</i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="form-row">
                       <label>
@@ -115,9 +164,17 @@
                       <i class="material-icons" title="Número">&#xE400;</i>
                       <span class="question">¿Cuántos años tiene?</span>
                     </div>
+                    <div class="questions-list-item js-source" title="Selección" data-id="1" data-question-definition="<?= htmlspecialchars($select_json) ?>">
+                      <i class="material-icons" title="Selección">arrow_drop_down_circle</i>
+                      <span class="question">Seleccione una opción</span>
+                    </div>
                     <div class="questions-list-item js-source" title="Opción Múltiple" data-id="2" data-question-definition="<?= htmlspecialchars($multiple_json) ?>">
-                      <i class="material-icons">&#xE837;</i>
+                      <i class="material-icons">check_box</i>
                       <span class="question">¿Qué mejoras ha presentado con el tratamiento?</span>
+                    </div>
+                    <div class="questions-list-item js-source" title="Opciones" data-id="6" data-question-definition="<?= htmlspecialchars($radio_json) ?>">
+                      <i class="material-icons">radio_button_checked</i>
+                      <span class="question">¿Qué describiría mejor su estado?</span>
                     </div>
                     <div class="questions-list-item js-source" title="Escala Lineal" data-id="3" data-question-definition="<?= htmlspecialchars($scale_json) ?>">
                       <i class="material-icons">&#xE260;</i>
@@ -126,6 +183,10 @@
                     <div class="questions-list-item js-source" title="Si/No" data-id="4" data-question-definition="<?= htmlspecialchars($yes_no_json) ?>">
                       <i class="material-icons">&#xE3F1;</i>
                       <span class="question">¿Has tenido algún malestar después de tomar el medicamento?</span>
+                    </div>
+                    <div class="questions-list-item js-source" title="OSDI" data-id="5" data-question-definition="<?= htmlspecialchars($osdi_json) ?>">
+                      <i class="material-icons">&#xE417;</i>
+                      <span class="question">Prueba OSDI</span>
                     </div>
                   </div>
                 </div>
@@ -158,7 +219,7 @@
         <div id="af-container" class="af-container">
           <div class="appform-wrapper">
             <header class="af-header">
-              <div class="af-logos">
+              <div id="af-logos" class="af-logos">
                 <img src="/assets/img/logo-thea.png" alt="">
                 <img src="/assets/img/logo-hospital.png" alt="">
               </div>
@@ -215,6 +276,24 @@
       <label>
         <span class="af-label"><% question %></span>
         <input type="number" class="af-input" name="<% id %>">
+      </label>
+      <div class="drag-handle material-icons">
+        &#xE25D;
+      </div>
+    </div>
+  </div>
+<?= '</script>' ?>
+<?= '<script id="select-quest-tmpl" type="x-tmpl-mustache">' ?>
+  <div class="appform-row" data-id="<% id %>" data-question-definition="<% definition %>">
+    <input type="hidden" name="<% visit_block %>[]" value="<% id %>">
+    <div class="relative">
+      <label>
+        <span class="af-label"><% question %></span>
+        <select class="af-select"> name="<% id %>">
+          <%# options %>
+            <option value="<% . %>"><% . %></option>
+          <%/ options %>
+        </select>
       </label>
       <div class="drag-handle material-icons">
         &#xE25D;
@@ -284,6 +363,45 @@
     </div>
   </div>
 <?= '</script>' ?>
+<?= '<script id="radio-quest-tmpl" type="x-tmpl-mustache">' ?>
+  <div class="appform-row" data-id="<% id %>" data-question-definition="<% definition %>">
+    <input type="hidden" name="<% visit_block %>[]" value="<% id %>">
+    <div class="relative">
+      <span class="af-label"><% question %></span>
+      <div class="af-options">
+        <%# options %>
+          <label>
+            <input type="radio" name="<% id %>" value="<% . %>">
+            <span class="af-options-impostor">
+              <span class="ball"></span>
+            </span>
+            <span class="af-list-label"><% . %></span>
+          </label>
+        <%/ options %>
+      </div>
+      <div class="drag-handle material-icons">
+        &#xE25D;
+      </div>
+    </div>
+  </div>
+<?= '</script>' ?>
+<?= '<script id="osdi-quest-tmpl" type="x-tmpl-mustache">' ?>
+  <div class="appform-row" data-id="<% id %>" data-question-definition="<% definition %>">
+    <input type="hidden" name="<% visit_block %>[]" value="<% id %>">
+    <div class="relative">
+      <label>
+        <span class="af-label"><% question %></span>
+        <span class="input-with-button">
+          <input type="number" class="af-input" name="<% id %>">
+          <button type="button" class="af-button">Tomar prueba</button>
+        </span>
+      </label>
+      <div class="drag-handle material-icons">
+        &#xE25D;
+      </div>
+    </div>
+  </div>
+<?= '</script>' ?>
 <?= '<script id="styles-quest-tmpl" type="x-tmpl-mustache">' ?>
   .appform-row.gu-mirror {
     background-color: <% bg %>;
@@ -303,17 +421,17 @@
   .af-input:focus, .af-textarea:focus {
     box-shadow: 0 0 0 1px <% bg %>, 0 0 0 5px <% accent %>;
   }
-  .af-submit {
+  .af-submit, .af-button {
     background-color: <% accent %>;
     color: <% accent_text %>;
   }
-  .af-submit:hover, .af-submit:focus {
+  .af-submit:hover, .af-submit:focus, .af-button:hover, .af-button:focus {
     background-color: <% accent_darken %>;
   }
   .af-checkbox input[type=checkbox]:checked + .af-checkbox-impostor {
     background-color: <% accent %>;
   }
-  .af-checkbox-impostor {
+  .af-checkbox-impostor, .af-options-impostor {
     background-color: <% input_bg %>;
     color: <% accent_text %>;
   }

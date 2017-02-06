@@ -63,9 +63,10 @@ $accent-color: $primary-color
   text-align: center
   margin-bottom: 1rem
   img
-    max-width: 32%
+    max-width: 30%
     width: 150px
-    margin: 0 1rem
+    margin: 0 1.6%
+    vertical-align: middle
 
 .af-separator
   transition: border-color
@@ -113,6 +114,14 @@ $accent-color: $primary-color
 .af-input
   @extend %af-input
 
+.af-select
+  @extend %af-input
+  background-image: url("/assets/img/drop_down.svg")
+  background-repeat: no-repeat
+  background-position: 90% center
+  background-position: calc(100% - 0.5rem) center
+  cursor: pointer
+
 .af-textarea
   @extend %af-input
   height: auto
@@ -139,6 +148,8 @@ $accent-color: $primary-color
   border-radius: 2px
   &:focus
     outline: none
+
+// Multiple
 
 .af-checkbox
   font-size: 0
@@ -173,6 +184,47 @@ $accent-color: $primary-color
     i
       transform: scale(1)
       opacity: 1
+
+// Options
+
+.af-options
+  font-size: 0
+  input[type=radio]
+    display: none
+  label
+    display: inline-block
+    margin-bottom: 1rem
+    font-size: 1rem
+    width: 49%
+    margin-right: 1%
+  .af-list-label
+    vertical-align: middle
+  .af-options-impostor
+    +size(26px)
+    transition: background-color 200ms
+    position: relative
+    display: inline-block
+    border-radius: 50%
+    vertical-align: middle
+    margin-right: 0.5rem
+    text-align: center
+    span.ball
+      +size(100%)
+      +position(absolute, 0)
+      transition: opacity 200ms, transform 200ms
+      transform: scale(0)
+      background-color: $primary-color
+      display: block
+      border-radius: 50%
+      margin: auto
+      opacity: 0
+  input[type=radio]:checked + .af-options-impostor
+    span.ball
+      transform: scale(1)
+      opacity: 1
+
+
+// Linear scale
 
 .af-radio-active
   +position(absolute, 0)
@@ -225,6 +277,33 @@ $accent-color: $primary-color
     font-size: 0.6rem
     margin-top: 0.5rem
     counter-increment: section
+
+.af-button
+  transition: box-shadow 200ms, background-color 200ms
+  appearance: none
+  height: 42px
+  border: none
+  margin: 0
+  padding: 0 1.5rem
+  text-align: center
+  font-size: 0.8rem
+  text-transform: uppercase
+  font-weight: bold
+  letter-spacing: 0.1em
+  cursor: pointer
+  display: inline-block
+  line-height: 1.2
+  text-decoration: none
+  border-radius: 2px
+  &:focus
+    outline: none
+
+.input-with-button
+  display: flex
+  align-items: center
+  .af-input
+    flex: 1
+    margin-right: 1rem
 
 
 // %appform-input

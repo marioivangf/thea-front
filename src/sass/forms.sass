@@ -18,6 +18,9 @@
 .form-input
   @extend %input
 
+.wk-prompt-input
+  @extend %input
+
 .form-input--big
   @extend %input
   height: 52px
@@ -30,6 +33,35 @@
   resize: vertical
   max-height: 100px
   padding: 0.5rem
+
+.wk-wysiwyg
+  @extend %input
+  height: auto
+  min-height: 60px
+  resize: vertical
+  max-height: 100px
+  padding: 0.5rem
+  cursor: text
+
+.wk-switchboard
+  display: none
+
+.tagin
+  @extend %input
+  height: auto
+  min-height: 60px
+  resize: vertical
+  max-height: 100px
+  padding: 0.5rem
+
+.tagin-tag
+  background-color: $primary-color
+  color: #FFF
+  border-radius: 2px
+
+.tagin-tag.tagin-selected
+  color: rgba(white, $p2)
+  background-color: shade($primary-color, 20%)
 
 .form-select
   appearance: none
@@ -149,24 +181,40 @@ label, input[type=checkbox]
   .image-placeholder
     position: relative
     display: block
-    background-color: #F4F4F4
+    background-color: #6E91CA
     margin-top: 0.5rem
     border-radius: 2px
-    i
+    font-size: 0
+    .actions
       +position(absolute, 0)
-      +size(3rem)
-      display: block
-      margin: auto
+      display: flex
+      align-items: center
+      justify-content: center
       transition: color 200ms
       font-size: 3rem
       color: rgba(black, $p4)
-    &:hover i
-      color: rgba(black, $p3)
+      align-self: center
+      cursor: default
+    &:before
+      +position(absolute, 0)
+      transition: opacity 200ms
+      content: ""
+      background-color: rgba(black, 0.6)
+      border-radius: 2px
+      opacity: 0
+    &:hover
+      &:before
+        opacity: 1
   .image
     width: 100%
+    display: block
   &.clean
+    .image
+      display: none
     .image-placeholder
-      height: 150px
+      height: 100px
+      &:hover:before
+        opacity: 0 !important
 
 .hidden-file-input
   width: 0.1px

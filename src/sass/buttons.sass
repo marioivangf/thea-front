@@ -16,7 +16,7 @@
   &:hover, &:focus
     background-color: shade($primary-color, 10%)
 
-.btn--secondary
+.btn--secondary, .wk-prompt-cancel
   @extend %btn
   min-width: 100px
   background-color: rgba(black, $p5)
@@ -26,7 +26,7 @@
     color: rgba(black, $p2)
     background-color: rgba(black, $p4)
 
-.btn--primary
+.btn--primary, .wk-prompt-ok
   @extend %btn
   min-width: 100px
   color: white
@@ -47,7 +47,7 @@
   &:hover, &:focus
     background-color: shade($primary-color, 10%)
 
-.btn--icon
+.btn--icon, .wk-command
   +size(42px)
   display: inline-flex
   align-items: center
@@ -64,6 +64,24 @@
     outline: none
   &:hover
     color: rgba(black, $p2)
+
+.btn--icon--white
+  +size(42px)
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  transition: color 200ms
+  margin: 0
+  border: none
+  background: transparent
+  color: rgba(white, $p2)
+  cursor: pointer
+  padding: 0
+  text-decoration: none
+  &:focus
+    outline: none
+  &:hover
+    color: white
 
 .btn--icon-in-input
   @extend .btn--icon
