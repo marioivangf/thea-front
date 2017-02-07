@@ -469,10 +469,10 @@
   function serialize_ques_options () {
     var cont = document.getElementById("question-options");
     _(cont.children).each(function (node, index) {
+      var in_reply = node.querySelector("[data-reply]");
       var in_value = node.querySelector("[data-value]");
-      var in_option = node.querySelector("[data-option]");
-      in_value.name="value-"+index;
-      in_option.name="option-"+index;
+      in_reply.name = in_reply.id ="id_form-"+index+"-reply";
+      in_value.name = in_value.id ="id_form-"+index+"-value";
     });
   }
 
