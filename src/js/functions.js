@@ -126,6 +126,25 @@
     impostor.style.backgroundColor = input.value;
   });
 
+  // Rome caledar inititalization
+  _(document.querySelectorAll("[data-date-input]")).each(function (node) {
+    console.log(rome.moment);
+    rome.use(moment);
+    console.log(rome.moment);
+    var cal = rome(node, {
+      time: false
+    });
+    var scrollable_parent = node.closest(".scrollable");
+    if (scrollable_parent) {
+      scrollable_parent.addEventListener("scroll", function() {
+        cal.hide();
+      });
+    }
+    window.addEventListener("scroll", function() {
+      cal.hide();
+    });
+  });
+
   // Dropdown inititalization
   _(document.querySelectorAll("[data-dd]")).each(function (node) {
     new Dropdown(node);

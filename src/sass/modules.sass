@@ -185,3 +185,96 @@
   background-color: $primary-color
   color: white
   // background: #F4F4F4
+
+/* Rome */
+.rd-container
+  display: none
+  background-color: #fff
+  padding: 10px
+  text-align: center
+  box-shadow: $big-shadow
+  border-radius: 2px
+
+.rd-container-attachment
+  position: absolute
+
+.rd-month
+  display: inline-block
+  margin-right: 25px
+  &:last-child
+    margin-right: 0
+
+.rd-month-label
+  font-size: 0.8rem
+
+.rd-back, .rd-next
+  cursor: pointer
+  border: none
+  outline: none
+  background: none
+  padding: 0
+  margin: 0
+  color: $primary-color
+
+.rd-back[disabled], .rd-next[disabled]
+  cursor: default
+
+.rd-back
+  float: left
+
+.rd-next
+  float: right
+
+.rd-back:before
+  display: block
+  content: '\2190'
+
+.rd-next:before
+  display: block
+  content: '\2192'
+
+.rd-day-head
+  padding: 0.3rem
+
+.rd-day-body
+  cursor: pointer
+  text-align: center
+  padding: 0.3rem
+  color: rgba(black, $p1)
+  font-size: 0.8rem
+  &:hover
+    background-color: rgba(black, $p6)
+
+.rd-day-selected, .rd-time-selected, .rd-time-option:hover
+  cursor: pointer
+  background-color: $primary-color !important
+  color: #fff
+
+.rd-day-prev-month, .rd-day-next-month
+  color: rgba(black, $p3)
+
+.rd-day-disabled
+  cursor: default
+  color: rgba(black, $p4)
+
+.rd-time
+  position: relative
+  display: inline-block
+  margin-top: 5px
+  min-width: 80px
+
+.rd-time-list
+  display: none
+  position: absolute
+  overflow-y: scroll
+  max-height: 160px
+  left: 0
+  right: 0
+  background-color: #fff
+  color: #333
+
+.rd-time-selected, .rd-time-option
+  padding: 5px
+
+.rd-day-concealed
+  visibility: hidden
