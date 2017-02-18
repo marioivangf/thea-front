@@ -181,6 +181,7 @@ label, input[type=checkbox]
       opacity: 1
 
 .image-input
+  position: relative
   .image-placeholder
     position: relative
     display: block
@@ -198,6 +199,8 @@ label, input[type=checkbox]
       color: rgba(black, $p4)
       align-self: center
       cursor: default
+      &>div
+        z-index: 2
     &:before
       +position(absolute, 0)
       transition: opacity 200ms
@@ -220,12 +223,11 @@ label, input[type=checkbox]
         opacity: 0 !important
 
 .hidden-file-input
-  width: 0.1px
-  height: 0.1px
-  opacity: 0
+  +position(absolute, 0)
+  +size(100%)
   overflow: hidden
-  position: absolute
-  z-index: -1
+  opacity: 0
+  z-index: 1
 
 // Question creation options
 .quest-option
