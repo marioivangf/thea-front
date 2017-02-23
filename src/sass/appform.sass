@@ -114,6 +114,62 @@ $accent-color: $primary-color
 .af-input
   @extend %af-input
 
+.af-range
+  width: 100%
+  appearance: none
+  margin: 18px 0
+  &:focus
+    outline: none
+  &::-webkit-slider-runnable-track
+    width: 100%
+    height: 8px
+    cursor: pointer
+    border-radius: 999em
+    border: none
+  &::-webkit-slider-thumb
+    border: none
+    height: 20px
+    width: 20px
+    border-radius: 999em
+    cursor: pointer
+    -webkit-appearance: none
+    margin-top: -6px
+  &::-moz-range-track
+    width: 100%
+    height: 8.4px
+    cursor: pointer
+    border-radius: 999em
+    border: none
+  &::-moz-range-thumb
+    height: 20px
+    width: 20px
+    border-radius: 3px
+    cursor: pointer
+  &::-ms-track
+    width: 100%
+    height: 8.4px
+    cursor: pointer
+    background: transparent
+    border-color: transparent
+    border-width: 16px 0
+    color: transparent
+  &::-ms-fill-lower
+    background: #2a6495
+    border: 0.2px solid #010101
+    border-radius: 2.6px
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d
+  &::-ms-fill-upper
+    border: 0.2px solid #010101
+    border-radius: 2.6px
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d
+  &::-ms-thumb
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d
+    border: 1px solid #000000
+    height: 20px
+    width: 20px
+    border-radius: 3px
+    cursor: pointer
+
 .af-select
   @extend %af-input
   background-image: url("/assets/img/drop_down.svg")

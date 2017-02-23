@@ -331,7 +331,7 @@
 
   if (questions_source) {
 
-    var questions = ["number", "select", "multiple", "scale", "yes-no", "radio", "osdi", "styles"];
+    var questions = ["number", "select", "multiple", "scale", "yes-no", "radio", "osdi", "pain", "styles"];
     var question_templs = {};
     _(questions).each(function (question) {
       var tmpl = document.getElementById(question+"-quest-tmpl").innerHTML;
