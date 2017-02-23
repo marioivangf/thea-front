@@ -285,69 +285,19 @@
   var gender_chart_dom = document.getElementById("pie-chart");
   if (gender_chart_dom) {
     var data = JSON.parse(gender_chart_dom.dataset.chart);
-    var gender_chart = new Chart(gender_chart_dom.getContext('2d'), {
-      type: 'doughnut',
-      options: {
-        maintainAspectRatio: false,
-        title: { text: "Género de los pacientes" }
-      },
-      data: {
-        labels: ["Mujeres", "Hombres"],
-        datasets: [{
-          backgroundColor: [
-            "#34495e",
-            "#3498db"
-          ],
-          data: data // [522, 323]
-        }]
-      }
-    });
+    var gender_chart = new Chart(gender_chart_dom.getContext('2d'), data);
   }
 
   var age_chart_dom = document.getElementById('age-chart');
   if (age_chart_dom) {
     var data = JSON.parse(age_chart_dom.dataset.chart);
-    var age_chart = new Chart(age_chart_dom.getContext('2d'), {
-      type: 'bar',
-      options: {
-        maintainAspectRatio: false,
-        title: { text: "Edad promedio de los pacientes" }
-      },
-      data: {
-        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-        datasets: [{
-          label: 'Mujeres',
-          data: data.women, // [12, 19, 3, 17, 6, 3, 7]
-          backgroundColor: "#34495e"
-        }, {
-          label: 'Hombres',
-          data: data.men, // [2, 29, 5, 5, 2, 3, 10]
-          backgroundColor: "#3498db"
-        }]
-      }
-    });
+    var age_chart = new Chart(age_chart_dom.getContext('2d'), data);
   }
 
   var patients_chart_dom = document.getElementById('patients-chart');
   if (patients_chart_dom) {
     var data = JSON.parse(patients_chart_dom.dataset.chart);
-    var patients_chart = new Chart(patients_chart_dom.getContext('2d'), {
-      type: 'line',
-      options: {
-        maintainAspectRatio: false,
-        title: {
-          text: "Promedio de encuestados"
-        }
-      },
-      data: {
-        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-        datasets: [{
-          label: 'Encuestados',
-          data: data, // [40, 19, 42, 17, 56, 12, 38]
-          backgroundColor: "#34495e"
-        }]
-      }
-    });
+    var patients_chart = new Chart(patients_chart_dom.getContext('2d'), data);
   }
 
   // Dragula on forms construction

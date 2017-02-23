@@ -1,3 +1,65 @@
+<?php
+
+// Configuración de las gráficas
+// Pongo esto aquí arriba para que se vea mejor
+
+$gender_chart_options = '{
+  "type": "doughnut",
+  "options": {
+    "maintainAspectRatio": false,
+    "title": { "text": "Género de los pacientes" }
+  },
+  "data": {
+    "labels": ["Mujeres", "Hombres"],
+    "datasets": [{
+      "backgroundColor": [
+        "#3498db"
+      ],
+      "data": [522, 323]
+    }]
+  }
+}';
+
+// Edad promedio de los pacientes
+$age_chart_options = '{
+  "type": "bar",
+  "options": {
+    "maintainAspectRatio": false,
+    "title": { "text": "Edad promedio de los pacientes" }
+  },
+  "data": {
+    "labels": ["M", "T", "W", "T", "F", "S", "S"],
+    "datasets": [{
+      "label": "Mujeres",
+      "data": [12, 19, 3, 17, 6, 3, 7],
+      "backgroundColor": "#34495e"
+    }, {
+      "label": "Hombres",
+      "data": [2, 29, 5, 5, 2, 3, 10],
+      "backgroundColor": "#3498db"
+    }]
+  }
+}';
+
+$patients_chart_options = '{
+  "type": "line",
+  "options": {
+    "maintainAspectRatio": false,
+    "title": {
+      "text": "Promedio de encuestados"
+    }
+  },
+  "data": {
+    "labels": ["M", "T", "W", "T", "F", "S", "S"],
+    "datasets": [{
+      "label": "Encuestados",
+      "data": [40, 19, 42, 17, 56, 12, 38],
+      "backgroundColor": "#34495e"
+    }]
+  }
+}';
+
+?>
 <div class="list-view-layout-main-wrapper wrapper">
   <div class="list-view-layout">
     <div class="head-flex">
@@ -69,14 +131,14 @@
         </div>
         <hr class="y-separator">
         <div class="patients-pie-chart-container sdown">
-          <canvas id="patients-chart" class="patients-pie-chart" data-chart="[40, 19, 42, 17, 56, 12, 38]"></canvas>
+          <canvas id="patients-chart" class="patients-pie-chart" data-chart='<?= $patients_chart_options ?>'></canvas>
         </div>
         <div class="clearfix">
           <div class="float-col col-30 gender-pie-chart-container">
-            <canvas id="pie-chart" class="gender-pie-chart" data-chart="[522, 323]"></canvas>
+            <canvas id="pie-chart" class="gender-pie-chart" data-chart='<?= $gender_chart_options ?>'></canvas>
           </div>
           <div class="float-col col-70 age-pie-chart-container">
-            <canvas id="age-chart" class="gender-pie-chart" data-chart='{ "women": [12, 19, 3, 17, 6, 3, 7], "men": [2, 29, 5, 5, 2, 3, 10] }'></canvas>
+            <canvas id="age-chart" class="age-pie-chart" data-chart='<?= $age_chart_options ?>'></canvas>
           </div>
         </div>
       </main>
