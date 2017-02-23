@@ -109,17 +109,19 @@
                 <div class="tab" data-tabule-tab><!-- Datos Generales -->
                   <form id="formulary-form" action="/forms">
                     <input id="form-data" type="hidden" name="form-data">
-                    <div class="form-row">
-                      <label>
-                        <span class="form-label">Inicio</span>
-                        <input type="text" class="form-input" data-date-input>
-                      </label>
-                    </div>
-                    <div class="form-row">
-                      <label>
-                        <span class="form-label">Fin</span>
-                        <input type="text" class="form-input" data-date-input>
-                      </label>
+                    <div data-calendar-range class="form-row">
+                      <div class="form-row">
+                        <label>
+                          <span class="form-label">Inicio</span>
+                          <input type="text" class="form-input" data-calendar-range-start>
+                        </label>
+                      </div>
+                      <div>
+                        <label>
+                          <span class="form-label">Fin</span>
+                          <input type="text" class="form-input" data-calendar-range-end>
+                        </label>
+                      </div>
                     </div>
                     <div class="form-row">
                       <label>

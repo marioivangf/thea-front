@@ -127,10 +127,36 @@
   });
 
   // Rome caledar inititalization
-  _(document.querySelectorAll("[data-date-input]")).each(function (node) {
-    console.log(rome.moment);
+  _(document.querySelectorAll("[data-calendar-range]")).each(function (node) {
+
     rome.use(moment);
-    console.log(rome.moment);
+    var start = node.querySelector("[data-calendar-range-start]");
+    var end = node.querySelector("[data-calendar-range-end]");
+    var start_cal = rome(start, {
+      time: false,
+      monthsInCalendar: 2,
+      dateValidator: rome.val.beforeEq(end)
+    });
+    var end_cal = rome(end, {
+      time: false,
+      monthsInCalendar: 2,
+      dateValidator: rome.val.afterEq(start)
+    });
+    var scrollable_parent = node.closest(".scrollable");
+    if (scrollable_parent) {
+      scrollable_parent.addEventListener("scroll", function() {
+        start_cal.hide();
+        end_cal.hide();
+      });
+    }
+    window.addEventListener("scroll", function() {
+      start_cal.hide();
+      end_cal.hide();
+    });
+  });
+
+  _(document.querySelectorAll("[data-date-input]")).each(function (node) {
+    rome.use(moment);
     var cal = rome(node, {
       time: false
     });

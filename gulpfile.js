@@ -21,7 +21,7 @@ gulp.task('script-vendor', function (cb) {
 
 gulp.task('script', function (cb) {
   pump([
-    gulp.src('src/js/**/*.js'),
+    gulp.src(['src/js/rome.js', 'src/js/**/*.js']),
     maps.init(),
       concat('app.js'),
       uglify(),
