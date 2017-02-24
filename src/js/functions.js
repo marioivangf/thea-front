@@ -331,7 +331,7 @@
 
   if (questions_source) {
 
-    var questions = ["number", "select", "multiple", "scale", "yes-no", "radio", "osdi", "pain", "styles"];
+    var questions = ["number", "select", "multiple", "scale", "yes-no", "radio", "osdi", "pain", "oxford", "styles"];
     var question_templs = {};
     _(questions).each(function (question) {
       var tmpl = document.getElementById(question+"-quest-tmpl").innerHTML;
@@ -393,7 +393,7 @@
     v["bg"] = document.getElementById("af-bg-color").value;
     v["accent"] = document.getElementById("af-accent-color").value;
     // Calc colors
-    v["text"] = tinycolor(v["bg"]).isDark() ? "white" : "rgba(0, 0, 0, 0.8)"
+    v["text"] = tinycolor(v["bg"]).isDark() ? "white" : "rgba(0, 0, 0, 0.8)";
     v["input_bg"] = (tinycolor(v["bg"]).getBrightness() > 246) ? "#ECECEC" : "white";
     v["accent_darken"] = tinycolor(v["accent"]).darken(5);
     v["accent_text"] = tinycolor(v["accent_darken"]).isDark() ? "white" : "rgba(0, 0, 0, 0.8)";

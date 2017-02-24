@@ -361,6 +361,24 @@ $accent-color: $primary-color
     flex: 1
     margin-right: 1rem
 
+// Oxford
+.af-oxford
+  text-align: center
+  .af-oxford-eye-cont
+    display: inline-block
+    width: 30%
+    padding: 1rem
+    svg
+      width: 100%
+  .af-oxford-eye
+    transition: transform 200ms
+    display: block
+  input[type=radio]:checked + .af-oxford-eye
+    transform: scale(1.1)
+  input[type=radio]
+    display: none
+
+
 
 // %appform-input
 //   transition: box-shadow 200ms
