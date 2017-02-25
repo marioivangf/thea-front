@@ -331,7 +331,7 @@
 
   if (questions_source) {
 
-    var questions = ["number", "select", "multiple", "scale", "yes-no", "radio", "osdi", "pain", "oxford", "styles"];
+    var questions = ["number", "select", "multiple", "scale", "yes-no", "radio", "osdi", "pain", "oxford", "yes-no-open", "radio-open", "styles"];
     var question_templs = {};
     _(questions).each(function (question) {
       var tmpl = document.getElementById(question+"-quest-tmpl").innerHTML;
@@ -384,6 +384,12 @@
       }
     });
   }
+
+  window.quest_cond = function (inp, value) {
+    var parent = inp.closest("[data-quest-conditional]");
+    var target = parent.querySelector("[data-quest-target]");
+    target.classList.toggle("show", (inp.checked && inp.value === value));
+  };
 
   function update_form_styles () {
 

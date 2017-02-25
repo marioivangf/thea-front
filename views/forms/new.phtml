@@ -82,6 +82,30 @@
     "question": "Tinción de oxford"
   }';
 
+  $yes_no_open_json = '{
+    "id": 10,
+    "type": "yes-no-open",
+    "question": "¿Has tenido algún malestar después de tomar el medicamento?",
+    "options": [
+      "Si",
+      "No"
+    ],
+    "open": "¿Cuáles?"
+  }';
+
+  $radio_open_json = '{
+    "id": 11,
+    "type": "radio-open",
+    "question": "¿Qué describiría mejor su estado?",
+    "options": [
+      "Ninguna",
+      "Renacido",
+      "Destrozado",
+      "En la calle de la amargura"
+    ],
+    "open": "Especifica"
+  }';
+
 ?>
 
 <div class="list-view-layout-main-wrapper wrapper">
@@ -209,6 +233,14 @@
                     <div class="questions-list-item js-source" title="Tinción de oxford" data-id="9" data-question-definition="<?= htmlspecialchars($oxford_json) ?>">
                       <i class="material-icons">visibility_off</i>
                       <span class="question">Tinción de oxford</span>
+                    </div>
+                    <div class="questions-list-item js-source" title="Si/No (Abierta)" data-id="10" data-question-definition="<?= htmlspecialchars($yes_no_open_json) ?>">
+                      <i class="material-icons">&#xE3F1;</i>
+                      <span class="question">¿Has tenido algún malestar después de tomar el medicamento?</span>
+                    </div>
+                    <div class="questions-list-item js-source" title="Opciones (abierta)" data-id="11" data-question-definition="<?= htmlspecialchars($radio_open_json) ?>">
+                      <i class="material-icons">radio_button_checked</i>
+                      <span class="question">¿Qué describiría mejor su estado?</span>
                     </div>
                   </div>
                 </div>
@@ -485,6 +517,67 @@
             </span>
           </label>
         </div>
+      </div>
+      <div class="drag-handle material-icons">
+        &#xE25D;
+      </div>
+    </div>
+  </div>
+<?= '</script>' ?>
+<?= '<script id="yes-no-open-quest-tmpl" type="x-tmpl-mustache">' ?>
+  <div class="appform-row" data-id="<% id %>" data-question-definition="<% definition %>">
+    <input type="hidden" name="<% visit_block %>[]" value="<% id %>">
+    <div class="relative" data-quest-conditional>
+      <span class="af-label"><% question %></span>
+      <div class="af-radio">
+        <%# options %>
+          <label>
+            <input type="radio" name="<% id %>" value="<% . %>" onclick="quest_cond(this, 'Si');">
+            <span class="af-radio-active"></span>
+            <span class="af-radio-label"><% . %></span>
+          </label>
+        <%/ options %>
+      </div>
+      <div class="appform-row quest-conditional" data-quest-target>
+        <label>
+          <span class="af-label"><% open %></span>
+          <input type="number" class="af-input" name="<% id %>-open">
+        </label>
+      </div>
+      <div class="drag-handle material-icons">
+        &#xE25D;
+      </div>
+    </div>
+  </div>
+<?= '</script>' ?>
+<?= '<script id="radio-open-quest-tmpl" type="x-tmpl-mustache">' ?>
+  <div class="appform-row" data-id="<% id %>" data-question-definition="<% definition %>">
+    <input type="hidden" name="<% visit_block %>[]" value="<% id %>">
+    <div class="relative" data-quest-conditional>
+      <span class="af-label"><% question %></span>
+      <div class="af-options">
+        <%# options %>
+          <label>
+            <input type="radio" name="<% id %>" value="<% . %>" onclick="quest_cond(this, 'open');">
+            <span class="af-options-impostor">
+              <span class="ball"></span>
+            </span>
+            <span class="af-list-label"><% . %></span>
+          </label>
+        <%/ options %>
+        <label>
+          <input type="radio" name="<% id %>" value="open" onclick="quest_cond(this, 'open');">
+          <span class="af-options-impostor">
+            <span class="ball"></span>
+          </span>
+          <span class="af-list-label">Otro</span>
+        </label>
+      </div>
+      <div class="form-row quest-conditional" data-quest-target>
+        <label>
+          <span class="af-label"><% open %></span>
+          <input type="number" class="af-input" name="<% id %>-open">
+        </label>
       </div>
       <div class="drag-handle material-icons">
         &#xE25D;
