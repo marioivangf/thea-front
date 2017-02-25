@@ -286,10 +286,12 @@
   var quests = document.getElementById("question-options");
   if (quests) {
     var quests_cont = document.getElementById("quest-options-cont");
+    var quests_open = document.getElementById("quest-options-open");
     var quest_type_sel = document.getElementById("quest-type");
     var option_check = function () {
       var opt = quest_type_sel.options[quest_type_sel.selectedIndex];
       quests_cont.style.display = opt.dataset.options ? "block" : "none";
+      quests_open.style.display = opt.dataset.optionsOpen ? "block" : "none";
     };
     quest_type_sel.addEventListener("change", option_check);
     option_check();
