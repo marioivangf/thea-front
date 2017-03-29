@@ -370,7 +370,7 @@
       var definition = JSON.parse(def);
       // Validate if question already in block
       var exists = container.querySelectorAll('[data-id="'+definition.id+'"]');
-      if (exists.length > 0) {
+      if (container !== src && exists.length > 0) {
         alert("Esta pregunta ya existe para esta visita");
       } else {
         // Else do render
