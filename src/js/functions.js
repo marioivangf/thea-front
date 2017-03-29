@@ -362,6 +362,17 @@
       }
     });
 
+    // Auto scroll
+    var scroll = autoScroll([window],{
+      margin: 20,
+      maxSpeed: 5,
+      scrollWhenOutside: true,
+      autoScroll: function(){
+        //Only scroll when the pointer is down, and there is a child being dragged.
+        return this.down && drake.dragging;
+      }
+    });
+
     drake.on("drop", function (element, container, src, sibling) {
       // Get definition
       var def = element.dataset.questionDefinition;
