@@ -197,6 +197,28 @@
     });
   });
 
+  // Validations
+  _(document.querySelectorAll("[data-val-filesize]")).each(function (node) {
+
+    node.addEventListener("change", function (event) {
+
+      var value = node.value;
+      var max_size = Number(node.dataset.valFilesize);
+
+      if (!window.FormData) alert("Por favor actualiza tu navegador");
+      var files = node.files;
+      if (files.length === 0) return true;
+      if (files.length != 1  || files[0].size <= max_size * 1024 * 1024) return true
+      else {
+        alert("El archivo no debe exceder "+ max_size +" MB de tamaño.");
+        setTimeout(function () {
+          node.value = "";
+          node.dispatchEvent(new Event("change"));
+        }, 1);
+      }
+    });
+  });
+
   // Woofmark inititalization
   _(document.querySelectorAll("[data-woofmark]")).each(function (node) {
     var woof = woofmark(node, {
