@@ -355,6 +355,8 @@
 
   if (questions_source) {
 
+    var question_template = document.getElementById("quest-tmpl").innerHTML;
+    Mustache.parse(question_template, ["<%", "%>"]);
     var questions = ["number", "select", "multiple", "scale", "yes-no", "radio", "osdi", "pain", "oxford", "yes-no-open", "radio-open", "styles"];
     var question_templs = {};
     _(questions).each(function (question) {
@@ -412,7 +414,7 @@
         definition.visit_block = container.dataset.blockName;
         definition.definition = def;
         var tmpl = question_templs[definition.type];
-        var rendered = Mustache.render(tmpl, definition);
+        var rendered = Mustache.render(question_template, definition, { question_tmpl: tmpl });
         var wrapper= document.createElement("div");
         wrapper.innerHTML = rendered;
         container.insertBefore(wrapper.children[0], sibling);
