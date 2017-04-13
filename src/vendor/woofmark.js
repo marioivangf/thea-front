@@ -4365,27 +4365,27 @@ module.exports = setText;
 
 module.exports = {
   placeholders: {
-    bold: 'strong text',
-    italic: 'emphasized text',
-    quote: 'quoted text',
-    code: 'code goes here',
-    listitem: 'list item',
-    heading: 'Heading Text',
-    link: 'link text',
-    image: 'image description',
-    attachment: 'attachment description'
+    bold: 'texto en negritas',
+    italic: 'texto enfatizado',
+    quote: 'cita',
+    code: 'código',
+    listitem: 'ítem de lista',
+    heading: 'Título',
+    link: 'hipervínculo',
+    image: 'descripción de imagen',
+    attachment: 'descripción de adunto'
   },
   titles: {
-    bold: 'Strong <strong> Ctrl+B',
-    italic: 'Emphasis <em> Ctrl+I',
-    quote: 'Blockquote <blockquote> Ctrl+J',
-    code: 'Code Sample <pre><code> Ctrl+E',
-    ol: 'Numbered List <ol> Ctrl+O',
-    ul: 'Bulleted List <ul> Ctrl+U',
-    heading: 'Heading <h1>, <h2>, ... Ctrl+D',
-    link: 'Hyperlink <a> Ctrl+K',
-    image: 'Image <img> Ctrl+G',
-    attachment: 'Attachment Ctrl+Shift+K',
+    bold: 'Negritas <strong> Ctrl+B',
+    italic: 'Enfatizar <em> Ctrl+I',
+    quote: 'Cita <blockquote> Ctrl+J',
+    code: 'Código <pre><code> Ctrl+E',
+    ol: 'Lista ordenada <ol> Ctrl+O',
+    ul: 'Lista desordenada <ul> Ctrl+U',
+    heading: 'Título <h1>, <h2>, ... Ctrl+D',
+    link: 'Hipervínculo <a> Ctrl+K',
+    image: 'Imagen <img> Ctrl+G',
+    attachment: 'Adjunto Ctrl+Shift+K',
     markdown: 'Markdown Mode Ctrl+M',
     html: 'HTML Mode Ctrl+H',
     wysiwyg: 'Preview Mode Ctrl+P'
@@ -4399,8 +4399,8 @@ module.exports = {
     ul: '\u29BF',
     heading: 'Tt',
     link: 'Link',
-    image: 'Image',
-    attachment: 'Attachment',
+    image: 'Imagen',
+    attachment: 'Adjunto',
     hr: '\u21b5'
   },
   prompts: {
@@ -4677,6 +4677,10 @@ function woofmark (textarea, options) {
       if (o.html) { kanye.on('cmd+h', kanyeOptions, htmlMode); }
       if (o.wysiwyg) { kanye.on('cmd+p', kanyeOptions, wysiwygMode); }
     }
+
+    editable.addEventListener("keyup", keyup_rep, false);
+    parent.addEventListener("click", keyup_rep, false);
+
     classes[ar](parent, 'wk-container');
     parent[mov](editable);
     if (place) { parent[mov](place); }
@@ -4686,6 +4690,13 @@ function woofmark (textarea, options) {
       parent[mov](droparea);
       uploads(parent, droparea, editor, o, remove);
     }
+  }
+
+  function keyup_rep () {
+
+    var event = new Event("keyup"); //MARKK
+    textarea.value = editable.innerHTML.trim();
+    textarea.dispatchEvent(event);
   }
 
   function destroy () {
@@ -4822,6 +4833,7 @@ function woofmark (textarea, options) {
     button.tabIndex = -1;
     render(button, id);
     crossvent.add(button, 'click', getCommandHandler(surface, history, fn));
+    button.addEventListener("click", keyup_rep, false);
     if (combo) {
       addCommand(combo, fn);
     }

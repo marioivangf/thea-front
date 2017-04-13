@@ -12,8 +12,9 @@
     var input = event.currentTarget;
     var sync_target = document.getElementById(input.dataset.syncedInput);
     var value = input.value.trim();
+    console.log(value);
     sync_target.classList.toggle("clean", value === "")
-    sync_target.textContent = (value === "") ? input.placeholder : value;
+    sync_target.innerHTML = (value === "") ? input.placeholder : value;
   });
 
   // Toggle password in inputs
