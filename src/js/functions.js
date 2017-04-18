@@ -12,7 +12,6 @@
     var input = event.currentTarget;
     var sync_target = document.getElementById(input.dataset.syncedInput);
     var value = input.value.trim();
-    console.log(value);
     sync_target.classList.toggle("clean", value === "")
     sync_target.innerHTML = (value === "") ? input.placeholder : value;
   });
@@ -258,7 +257,7 @@
     });
     var form = node.form;
     form.addEventListener("submit", function () {
-      node.value = woof.value();
+      node.value = woof.editable.innerHTML;
     });
   });
 
