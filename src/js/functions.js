@@ -3,6 +3,9 @@
   // GLOBALS
   var path_name = document.body.dataset.pathName;
 
+  // Forms Statistics
+  Chart.defaults.global.title.display = true;
+
   // Not responsive validation
   window.addEventListener('resize', not_responsive_check, true);
   not_responsive_check();
@@ -114,6 +117,13 @@
         document.getElementById(target).innerHTML = response;
       });
     });
+  });
+
+  // Charts
+  var charts = document.querySelectorAll("[data-chart]");
+  _(charts).each(function (chart) {
+    var data = JSON.parse(chart.dataset.chart);
+    var chart = new Chart(chart.getContext("2d"), data);
   });
 
   // Color inputs
@@ -327,27 +337,6 @@
     quest_drake.on("dragend", function (el) {
       serialize_ques_options();
     });
-  }
-
-  // Forms Statistics
-  Chart.defaults.global.title.display = true;
-  // Gender Pie Chart
-  var gender_chart_dom = document.getElementById("pie-chart");
-  if (gender_chart_dom) {
-    var data = JSON.parse(gender_chart_dom.dataset.chart);
-    var gender_chart = new Chart(gender_chart_dom.getContext('2d'), data);
-  }
-
-  var age_chart_dom = document.getElementById('age-chart');
-  if (age_chart_dom) {
-    var data = JSON.parse(age_chart_dom.dataset.chart);
-    var age_chart = new Chart(age_chart_dom.getContext('2d'), data);
-  }
-
-  var patients_chart_dom = document.getElementById('patients-chart');
-  if (patients_chart_dom) {
-    var data = JSON.parse(patients_chart_dom.dataset.chart);
-    var patients_chart = new Chart(patients_chart_dom.getContext('2d'), data);
   }
 
   // Dragula on forms construction
